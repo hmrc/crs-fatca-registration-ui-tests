@@ -18,11 +18,40 @@ package uk.gov.hmrc.test.ui.pages
 
 import org.openqa.selenium.By
 import org.scalatest.matchers.should.Matchers
+import org.openqa.selenium.support.ui.Select
+import uk.gov.hmrc.test.ui.conf.TestConfiguration
 import uk.gov.hmrc.test.ui.driver.BrowserDriver
+import uk.gov.hmrc.domain._
 
 trait BasePage extends BrowserDriver with Matchers {
-  val continueButton = "continue-button"
+  val pageUrl: String
+  val baseUrl: String = TestConfiguration.url("crs-fatca-registration-frontend") + "/register"
 
-  def submitPage(): Unit =
-    driver.findElement(By.id(continueButton)).click()
+  val submitButtonId: By     = By.id("submit")
+  val randomisedNino: String = new Generator().nextNino.toString()
+  val randomisedUtr: String  = new SaUtrGenerator().nextSaUtr.toString()
+
+  def navigateTo(url: String): Unit =
+    driver.navigate().to(url)
+
+  def onPage(url: String): Unit =
+    if (driver.getCurrentUrl != url)
+      throw PageNotFoundException(
+        s"Expected '$url' page, but found '${driver.getCurrentUrl}' page."
+      )
+
+  def sendTextById(id: By, textToEnter: String): Unit = {
+    driver.findElement(id).clear()
+    driver.findElement(id).sendKeys(textToEnter)
+  }
+
+  def selectDropdownById(id: By): Select = new Select(driver.findElement(id: By))
+
+  def clickOnById(id: By): Unit =
+    driver.findElement(id).click()
+
+  def submitPageById(): Unit =
+    driver.findElement(submitButtonId).click()
 }
+
+case class PageNotFoundException(message: String) extends Exception(message)

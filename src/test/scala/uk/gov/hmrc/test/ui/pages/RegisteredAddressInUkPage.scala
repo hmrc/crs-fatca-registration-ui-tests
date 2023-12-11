@@ -14,8 +14,26 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.specs.tags
+package uk.gov.hmrc.test.ui.pages
 
-import org.scalatest.Tag
+import org.openqa.selenium.By
 
-object ZapTests extends Tag("ZapTests")
+object RegisteredAddressInUkPage extends BasePage {
+  override val pageUrl: String = baseUrl + "/registered-address-in-uk"
+
+  private val yesRadioId = By.id("value")
+  private val noRadioId  = By.id("value-no")
+
+  def registeredAddressInUkYes(): Unit = {
+    onPage(pageUrl)
+    clickOnById(yesRadioId)
+    submitPageById()
+  }
+
+  /*TODO Create HaveUtrPage object when page is built
+  def registeredAddressInUkNo(): Unit = {
+    onPage(pageUrl)
+    clickOnById(noRadioId)
+    submitPageById()
+  }*/
+}

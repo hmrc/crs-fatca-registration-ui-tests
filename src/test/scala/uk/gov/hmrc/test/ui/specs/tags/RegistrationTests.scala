@@ -14,16 +14,8 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.pages
+package uk.gov.hmrc.test.ui.specs.tags
 
-import org.openqa.selenium.By
+import org.scalatest.Tag
 
-object CheckYourVATResult extends BasePage {
-
-  val resultOutcome        = "resultOutcome"
-  val useSetVATFlatRate    = "You can use the 16.5% VAT flat rate"
-  val useUniqueVATFlatRate = "You can use the VAT flat rate for your business type"
-
-  def result: String =
-    driver.findElement(By.id(resultOutcome)).getText
-}
+object RegistrationTests extends Tag("RegistrationTests")

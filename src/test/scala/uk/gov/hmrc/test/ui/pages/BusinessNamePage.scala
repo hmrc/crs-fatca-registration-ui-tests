@@ -18,14 +18,14 @@ package uk.gov.hmrc.test.ui.pages
 
 import org.openqa.selenium.By
 
-object Turnover extends BasePage {
+object BusinessNamePage extends BasePage {
+  override val pageUrl: String = baseUrl + "/business-name"
 
-  val turnoverInput = "turnover"
+  private val businessNameId = By.id("value")
 
-  def provideTurnoverAmount(amount: String): CostOfGoods.type = {
-    driver.findElement(By.id(turnoverInput)).clear()
-    driver.findElement(By.id(turnoverInput)).sendKeys(amount)
-    submitPage()
-    CostOfGoods
+  def enterBusinessName(): Unit = {
+    onPage(pageUrl)
+    sendTextById(businessNameId, "test business name")
+    submitPageById()
   }
 }

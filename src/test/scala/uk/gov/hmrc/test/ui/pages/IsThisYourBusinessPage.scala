@@ -18,18 +18,9 @@ package uk.gov.hmrc.test.ui.pages
 
 import org.openqa.selenium.By
 
-object CostOfGoods extends BasePage {
+object IsThisYourBusinessPage extends BasePage {
+  override val pageUrl: String = baseUrl + "/is-this-your-business"
 
-  val costOfGoodsInput = "costOfGoods"
-
-  def provideCostOfGoodsAmount(amount: String): this.type = {
-    driver.findElement(By.id(costOfGoodsInput)).clear()
-    driver.findElement(By.id(costOfGoodsInput)).sendKeys(amount)
-    this
-  }
-
-  def submitVATInformation: CheckYourVATResult.type = {
-    submitPage()
-    CheckYourVATResult
-  }
+  private val yesRadioId = By.id("value")
+  private val noRadioId  = By.id("value-no")
 }

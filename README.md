@@ -1,7 +1,7 @@
 **This is a template README.md.  Be sure to update this with project specific content that describes your ui test project.**
 
 # crs-fatca-registration-ui-tests
-`<digital service name>` UI journey tests.  
+`crs-fatca-registration-frontend` UI journey tests.  
 
 ## Pre-requisites
 
@@ -13,10 +13,10 @@ Start Mongo Docker container as follows:
 docker run --rm -d -p 27017:27017 --name mongo percona/percona-server-mongodb:5.0
 ```
 
-Start `<digital service name>` services as follows:
+Start `crs-fatca-registration-frontend` services as follows:
 
 ```bash
-sm2 --start <profile>
+sm2 --start CRS_FATCA_ALL
 ```
 
 ### Dockerized browser container(s)
@@ -43,7 +43,7 @@ Run tests as follows:
 * Argument `<environment>` must be `local`, `dev`, `qa` or `staging`.
 
 ```bash
-./run_tests.sh <browser> <environment>
+./run_registration_tests.sh <browser> <environment>
 ```
 
 ### Running ZAP tests
