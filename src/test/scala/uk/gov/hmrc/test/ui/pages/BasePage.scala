@@ -24,9 +24,11 @@ import uk.gov.hmrc.test.ui.driver.BrowserDriver
 import uk.gov.hmrc.domain._
 
 trait BasePage extends BrowserDriver with Matchers {
-  val pageUrl: String
-  val baseUrl: String = TestConfiguration.url("crs-fatca-registration-frontend") + "/register"
 
+  case class PageNotFoundException(message: String) extends Exception(message)
+
+  val pageUrl: String
+  val baseUrl: String        = TestConfiguration.url("crs-fatca-registration-frontend") + "/register"
   val submitButtonId: By     = By.id("submit")
   val randomisedNino: String = new Generator().nextNino.toString()
   val randomisedUtr: String  = new SaUtrGenerator().nextSaUtr.toString()
@@ -53,5 +55,3 @@ trait BasePage extends BrowserDriver with Matchers {
   def submitPageById(): Unit =
     driver.findElement(submitButtonId).click()
 }
-
-case class PageNotFoundException(message: String) extends Exception(message)
