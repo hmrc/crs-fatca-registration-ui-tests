@@ -26,7 +26,7 @@ Confirm that [docker-selenium-grid](https://github.com/hmrc/docker-selenium-grid
 
 ### Test inspection and debugging
 
-Connect to `172.18.0.3:7900` (Firefox), `172.18.0.4:7900` (Chrome) or `172.18.0.5:7900` (Edge) to inspect and debug test execution.
+Connect to port `7900` on the Grid browser's local IP address (see `localhost:4444/ui` to view each browser's IP) to inspect and debug test execution in a noVNC window.
 
 
 ## Tests
