@@ -19,27 +19,21 @@ Start `crs-fatca-registration-frontend` services as follows:
 sm2 --start CRS_FATCA_ALL
 ```
 
-### Dockerized browser container(s)
+### Docker Selenium Grid
 
-Start a browser Docker container as follows:
+Confirm that [docker-selenium-grid](https://github.com/hmrc/docker-selenium-grid) is up-to-date and follow the provided [instructions](https://github.com/hmrc/docker-selenium-grid/blob/main/README.md).
 
-* Argument `<browser>` must be `remote-chrome`, `remote-edge` or `remote-firefox`.
-
-```bash
-./run_browser_with_docker.sh <browser>
-```
 
 ### Test inspection and debugging
 
-Connect to `127.0.0.1:5900` via a VNC client to inspect and debug test execution.
+Connect to `172.18.0.3:7900` (Firefox), `172.18.0.4:7900` (Chrome) or `172.18.0.5:7900` (Edge) to inspect and debug test execution.
 
-If prompted for a password the default is `secret`.
 
 ## Tests
 
 Run tests as follows:
 
-* Argument `<browser>` must be `chrome`, `edge`, `firefox`, `remote-chrome`, `remote-edge` or `remote-firefox`.
+* Argument `<browser>` must be `chrome`, `edge`, or `firefox`.
 * Argument `<environment>` must be `local`, `dev`, `qa` or `staging`.
 
 ```bash
@@ -85,22 +79,6 @@ To execute ZAP tests locally using a remote-chrome browser
 ### Running tests using BrowserStack
 If you would like to run your tests via BrowserStack from your local development environment please refer to the [webdriver-factory](https://github.com/hmrc/webdriver-factory/blob/main/README.md/#user-content-running-tests-using-browser-stack) project.
 
-## Installing local driver binaries
-
-This project supports UI test execution using Firefox (Geckodriver) and Chrome (Chromedriver) browsers. 
-
-See the `drivers/` directory for some helpful scripts to do the installation work for you.  They should work on both Mac and Linux by running the following command:
-
-    ./installGeckodriver.sh <operating-system> <driver-version>
-    or
-    ./installChromedriver <operating-system> <driver-version>
-
-- *<operating-system>* defaults to **linux64**, however it also supports **macos**
-- *<driver-version>* defaults to **0.21.0** for Gecko/Firefox, and the latest release for Chrome.  You can, however, however pass any version available at the [Geckodriver](https://github.com/mozilla/geckodriver/tags) or [Chromedriver](http://chromedriver.storage.googleapis.com/) repositories.
-
-**Note 1:** *You will need to ensure that you have a recent version of Chrome and/or Firefox installed for the later versions of the drivers to work reliably.*
-
-**Note 2** *These scripts use sudo to set the right permissions on the drivers so you will likely be prompted to enter your password.*
 
 ## Scalafmt
 
