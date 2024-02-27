@@ -1,5 +1,3 @@
-**This is a template README.md.  Be sure to update this with project specific content that describes your ui test project.**
-
 # crs-fatca-registration-ui-tests
 `crs-fatca-registration-frontend` UI journey tests.  
 
@@ -37,7 +35,7 @@ Run tests as follows:
 * Argument `<environment>` must be `local`, `dev`, `qa` or `staging`.
 
 ```bash
-./run_registration_tests.sh <browser> <environment>
+./run_tests.sh <browser> <environment>
 ```
 
 ### Running ZAP tests
@@ -49,12 +47,12 @@ automated ZAP tests should not be considered a substitute for manual exploratory
 
 First [run the DAST tool locally](https://github.com/hmrc/dast-config-manager/blob/main/README.md#running-zap-locally)
 
-The shell script `run_zap_tests.sh` is available to execute ZAP tests. The script proxies the registration journey tests via ZAP.  
+The shell script `run_local_zap_tests.sh` is available to execute ZAP tests. The script proxies the journeys tagged with 'ZapTests' via ZAP.  
 
 For example, to execute ZAP tests locally using Chrome browser:
 
 ```
-./run_zap_test.sh chrome local
+./run_local_zap_test.sh chrome local
 ```
 
 ### Running tests using BrowserStack

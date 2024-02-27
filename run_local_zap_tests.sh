@@ -14,4 +14,4 @@ fi
 # single ZAP focused journey test is sufficient.
 
 # -n ZapTests Runs only the tests tagged as ZapTests.
-sbt -Dbrowser="${BROWSER_TYPE:=$DEFAULT_BROWSER}" -Denvironment="${ENV:=local}" -Dsecurity.assessment=true "testOnly uk.gov.hmrc.test.ui.specs.* -- -n RegistrationTests"
+sbt -Dbrowser="${BROWSER_TYPE:=$DEFAULT_BROWSER}" -Denvironment="${ENV:=local}" -Dsecurity.assessment=true "testOnly uk.gov.hmrc.test.ui.specs.* -- -n ZapTests"

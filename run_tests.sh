@@ -1,4 +1,5 @@
-#!/bin/bash -e
+#!/usr/bin/env bash
+
 DEFAULT_BROWSER=chrome
 BROWSER_TYPE=$1
 ENV=$2
@@ -11,4 +12,4 @@ fi
 # Scalafmt checks have been separated from the test command to avoid OutOfMemoryError in Jenkins
 sbt scalafmtCheckAll scalafmtSbtCheck
 
-sbt -Dbrowser="${BROWSER_TYPE:=$DEFAULT_BROWSER}" -Denvironment="${ENV:=local}" "testOnly uk.gov.hmrc.test.ui.specs.*"
+sbt clean -Dbrowser="${BROWSER_TYPE:=$DEFAULT_BROWSER}" -Denvironment="${ENV:=local}" "testOnly uk.gov.hmrc.test.ui.specs.* -- -n RegistrationTests" testReport
