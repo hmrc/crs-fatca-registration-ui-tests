@@ -23,7 +23,7 @@ class OrgRegistrationSpec extends BaseSpec {
 
   Feature("Organisation Registration") {
 
-    Scenario("Non-matched organisation registers for CRS/FATCA as a limited company", RegistrationTests, ZapTests) {
+    Scenario("Non-matched organisation registers for CRS-FATCA as a limited company", RegistrationTests, ZapTests) {
 
       Given("User logs in as an orgainsation")
       AuthLoginPage.loginAsNonAutomatchedOrgAdmin()
