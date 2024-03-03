@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,11 +18,23 @@ package uk.gov.hmrc.test.ui.pages
 
 import org.openqa.selenium.By
 
-object IsThisYourBusinessPage extends BasePage {
-  override val pageUrl: String = baseUrl + "/is-this-your-business"
 
-  def confirmMatchedBusiness(): Unit = {
-    clickOnYesRadioButton()
+object CheckYourAnswerPage extends BasePage {
+  override val pageUrl: String = baseUrl + "/check-your-answers"
+  private val changeYourBusinessLink   = By.id("business-with-i-d-name")
+
+  def confirmAndSendOnCYAPage(): Unit = {
+    onPage(pageUrl)
     submitPageById()
   }
+
+  def validatePageHeader(pageHeader: String): Unit = {
+    onPage(pageUrl)
+    checkH1(pageHeader)
+  }
+
+  def clickOnChangeYourBusinessAddress(): Unit = {
+    clickOnById(changeYourBusinessLink)
+  }
+
 }

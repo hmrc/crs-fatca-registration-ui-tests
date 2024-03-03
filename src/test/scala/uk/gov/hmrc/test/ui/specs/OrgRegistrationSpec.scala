@@ -23,16 +23,75 @@ class OrgRegistrationSpec extends BaseSpec {
 
   Feature("Organisation Registration") {
 
-    Scenario("Non-matched organisation registers for CRS-FATCA as a limited company", RegistrationTests, ZapTests) {
+    Scenario("Organisation with UTR registers for CRS-FATCA as a limited company ", RegistrationTests, ZapTests) {
 
-      Given("User logs in as an orgainsation")
+      Given("User logs in as an Organisation")
       AuthLoginPage.loginAsNonAutomatchedOrgAdmin()
       When("The user makes their way through the journey")
       RegistrationTypePage.registerAsOrgOrSoleTrader("Limited Company")
       RegisteredAddressInUkPage.registeredAddressInUkYes()
-      UtrPage.enterUtr()
-      BusinessNamePage.enterBusinessName()
-
+      UtrPage.enterValidUtr("1234567890")
+      BusinessNamePage.enterBusinessName("CRSFATCA company")
+      BusinessNamePage.confirmBusinessAddressInUkYes()
+      ContactPage.continueSettingYourContact()
+      ContactPage.enterFirstContactName()
+      ContactPage.enterFirstContactEmail()
+      ContactPage.confirmFirstContactTelephoneAvailable()
+      ContactPage.enterFirstContactTelephone()
+      ContactPage.confirmSecondContactAvailabilityYes()
+      ContactPage.enterSecondContactName()
+      ContactPage.enterSecondContactEmail()
+      ContactPage.confirmSecondContactTelephoneAvailable()
+      ContactPage.enterSecondContactTelephone()
+      CheckYourAnswerPage.confirmAndSendOnCYAPage()
+      //Confirmation Page is not available now, update this once it is available
     }
+
+    Scenario("Auto-matched Organisation with CT enrolment registers for CRS-FATCA", RegistrationTests, ZapTests) {
+
+      Given("User logs in as an Organisation")
+      AuthLoginPage.loginAsAutomatchedOrgAdmin()
+      When("The user makes their way through the journey")
+      BusinessNamePage.confirmBusinessAddressInUkYes()
+      ContactPage.continueSettingYourContact()
+      ContactPage.enterFirstContactName()
+      ContactPage.enterFirstContactEmail()
+      ContactPage.confirmFirstContactTelephoneAvailable()
+      ContactPage.enterFirstContactTelephone()
+      ContactPage.confirmSecondContactAvailabilityYes()
+      ContactPage.enterSecondContactName()
+      ContactPage.enterSecondContactEmail()
+      ContactPage.confirmSecondContactTelephoneAvailable()
+      ContactPage.enterSecondContactTelephone()
+      CheckYourAnswerPage.confirmAndSendOnCYAPage()
+      //Confirmation Page is not available now, update this once it is available
+    }
+
+    Scenario("Organisation without UTR registers for CRS-FATCA as a limited company ", RegistrationTests, ZapTests) {
+
+      Given("User logs in as an Organisation")
+      AuthLoginPage.loginAsNonAutomatchedOrgAdmin()
+      When("The user makes their way through the journey")
+      RegistrationTypePage.registerAsOrgOrSoleTrader("Limited Company")
+      RegisteredAddressInUkPage.registeredAddressInUkNo()
+      UtrPage.haveUTRNo()
+      BusinessNameWithoutIDPage.enterBusinessNameWithoutID()
+      BusinessTradingPage.haveTradingNameYes()
+      BusinessTradingPage.enterTradingName()
+      BusinessAddressWithoutIDNonUKPage.enterAddressNonUK()
+      ContactPage.continueSettingYourContact()
+      ContactPage.enterFirstContactName()
+      ContactPage.enterFirstContactEmail()
+      ContactPage.confirmFirstContactTelephoneAvailable()
+      ContactPage.enterFirstContactTelephone()
+      ContactPage.confirmSecondContactAvailabilityYes()
+      ContactPage.enterSecondContactName()
+      ContactPage.enterSecondContactEmail()
+      ContactPage.confirmSecondContactTelephoneAvailable()
+      ContactPage.enterSecondContactTelephone()
+      CheckYourAnswerPage.confirmAndSendOnCYAPage()
+      //Confirmation Page is not available now, update this once it is available
+    }
+
   }
 }

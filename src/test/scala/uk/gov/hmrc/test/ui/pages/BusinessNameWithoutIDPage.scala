@@ -14,26 +14,19 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.specs
+package uk.gov.hmrc.test.ui.pages
 
-import org.scalatest._
-import org.scalatest.featurespec.AnyFeatureSpec
-import org.scalatest.matchers.should.Matchers
-import org.scalatest.{BeforeAndAfterEach, GivenWhenThen}
-import uk.gov.hmrc.selenium.webdriver.{Browser, ScreenshotOnFailure}
+import org.openqa.selenium.By
 
-trait BaseSpec
-    extends AnyFeatureSpec
-    with GivenWhenThen
-    with Matchers
-    with BeforeAndAfterEach
-    with Browser
-    with ScreenshotOnFailure {
+object BusinessNameWithoutIDPage extends BasePage {
+  override val pageUrl: String = baseUrl + "/without-id/business-name"
 
-  override def beforeEach(): Unit =
-    startBrowser()
+  private val businessNameId = By.id("value")
 
-  override def afterEach(): Unit =
-    quitBrowser()
+  def enterBusinessNameWithoutID(): Unit = {
+    onPage(pageUrl)
+    sendTextById(businessNameId, "test Business Name")
+    submitPageById()
+  }
 
 }

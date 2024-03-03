@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,13 +14,15 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.driver
+package uk.gov.hmrc.test.ui.pages
 
-import org.openqa.selenium.remote.RemoteWebDriver
-import uk.gov.hmrc.selenium.webdriver.Driver
+object BusinessNotIdentifiedPage extends BasePage {
 
-trait BrowserDriver {
+  override val pageUrl: String = baseUrl + "/business-not-identified"
 
-  implicit def driver: RemoteWebDriver = Driver.instance
+  def validatePageHeader(pageHeader: String): Unit = {
+    onPage(pageUrl)
+    checkH1(pageHeader)
+  }
 
 }
