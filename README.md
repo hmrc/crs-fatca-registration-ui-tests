@@ -60,10 +60,6 @@ For example, to execute ZAP tests locally using Chrome browser:
 ./run_local_zap_test.sh chrome local
 ```
 
-### Running tests using BrowserStack
-If you would like to run your tests via BrowserStack from your local development environment please refer to 
-the [webdriver-factory](https://github.com/hmrc/webdriver-factory/blob/main/README.md/#user-content-running-tests-using-browser-stack) project.
-
 
 ## Scalafmt
 
