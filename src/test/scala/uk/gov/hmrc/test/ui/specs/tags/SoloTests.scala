@@ -14,13 +14,8 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.driver
+package uk.gov.hmrc.test.ui.specs.tags
 
-import org.openqa.selenium.remote.RemoteWebDriver
-import uk.gov.hmrc.selenium.webdriver.Driver
+import org.scalatest.Tag
 
-trait BrowserDriver {
-
-  implicit def driver: RemoteWebDriver = Driver.instance
-
-}
+object SoloTests extends Tag("SoloTests")

@@ -14,13 +14,19 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.driver
+package uk.gov.hmrc.test.ui.pages
 
-import org.openqa.selenium.remote.RemoteWebDriver
-import uk.gov.hmrc.selenium.webdriver.Driver
+import org.openqa.selenium.By
 
-trait BrowserDriver {
+object BusinessNameWithoutIDPage extends BasePage {
+  override val pageUrl: String = baseUrl + "/without-id/business-name"
 
-  implicit def driver: RemoteWebDriver = Driver.instance
+  private val businessNameId = By.id("value")
+
+  def enterBusinessNameWithoutID(): Unit = {
+    onPage(pageUrl)
+    sendTextById(businessNameId, "test Business Name")
+    submitPageById()
+  }
 
 }

@@ -19,6 +19,7 @@ package uk.gov.hmrc.test.ui.pages
 import org.openqa.selenium.By
 import org.scalatest.matchers.should.Matchers
 import org.openqa.selenium.support.ui.Select
+import org.scalatest.Assertion
 import uk.gov.hmrc.test.ui.conf.TestConfiguration
 import uk.gov.hmrc.test.ui.driver.BrowserDriver
 import uk.gov.hmrc.domain._
@@ -28,10 +29,15 @@ trait BasePage extends BrowserDriver with Matchers {
   case class PageNotFoundException(message: String) extends Exception(message)
 
   val pageUrl: String
-  val baseUrl: String        = TestConfiguration.url("crs-fatca-registration-frontend") + "/register"
-  val submitButtonId: By     = By.id("submit")
-  val randomisedNino: String = new Generator().nextNino.toString()
-  val randomisedUtr: String  = new SaUtrGenerator().nextSaUtr.toString()
+  val baseUrl: String         = TestConfiguration.url("crs-fatca-registration-frontend") + "/register"
+  val submitButtonId: By      = By.id("submit")
+  private val yesRadioId      = By.id("value")
+  private val noRadioId       = By.id("value-no")
+  private val countryDropdown = By.id("country")
+  private val countryOption   = By.id("country__option--0")
+  val randomisedNino: String  = new Generator().nextNino.toString()
+  val randomisedUtr: String   = new SaUtrGenerator().nextSaUtr.toString()
+  private val pageHeader      = By.tagName("h1")
 
   def navigateTo(url: String): Unit =
     driver.navigate().to(url)
@@ -49,9 +55,23 @@ trait BasePage extends BrowserDriver with Matchers {
 
   def selectDropdownById(id: By): Select = new Select(driver.findElement(id: By))
 
+  def countryAutoSelect(countryName: String): Unit = {
+    driver.findElement(countryDropdown).click()
+    driver.findElement(countryDropdown).sendKeys(countryName)
+    driver.findElement(countryOption).click()
+  }
   def clickOnById(id: By): Unit =
     driver.findElement(id).click()
 
   def submitPageById(): Unit =
     driver.findElement(submitButtonId).click()
+
+  def clickOnYesRadioButton(): Unit =
+    clickOnById(yesRadioId)
+
+  def clickOnNoRadioButton(): Unit =
+    clickOnById(noRadioId)
+
+  def checkH1(h1: String): Assertion = driver.findElement(pageHeader).getText should include(h1)
+
 }

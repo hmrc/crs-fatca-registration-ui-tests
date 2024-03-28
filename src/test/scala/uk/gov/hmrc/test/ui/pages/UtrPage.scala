@@ -29,4 +29,15 @@ object UtrPage extends BasePage {
     sendTextById(utrId, randomisedUtr)
     submitPageById()
   }
+
+  def enterValidUtr(utrToEnter: String): Unit = {
+    onPage(pageUrl)
+    sendTextById(utrId, utrToEnter)
+    submitPageById()
+  }
+
+  def haveUTRNo(): Unit = {
+    clickOnNoRadioButton()
+    submitPageById()
+  }
 }

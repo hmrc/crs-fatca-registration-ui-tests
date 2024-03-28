@@ -36,9 +36,13 @@ object RegistrationTypePage extends BasePage {
       case "LLP"             => llpRadioId
       case "Unincorporated"  => unincorporatedRadioId
       case "Sole Trader"     => soleTraderRadioId
+      case "Individual"      => individualRadioId
     })
     submitPageById()
   }
+
+  def checkPage(): Unit =
+    onPage(pageUrl)
 
   /* TODO create HaveNiNumberPage page object once page is built
   def registerAsIndividual(): Unit = {

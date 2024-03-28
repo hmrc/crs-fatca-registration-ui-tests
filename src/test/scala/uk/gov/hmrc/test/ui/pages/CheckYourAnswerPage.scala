@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,13 +14,25 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.driver
+package uk.gov.hmrc.test.ui.pages
 
-import org.openqa.selenium.remote.RemoteWebDriver
-import uk.gov.hmrc.selenium.webdriver.Driver
+import org.openqa.selenium.By
 
-trait BrowserDriver {
+object CheckYourAnswerPage extends BasePage {
+  override val pageUrl: String       = baseUrl + "/check-your-answers"
+  private val changeYourBusinessLink = By.id("business-with-i-d-name")
 
-  implicit def driver: RemoteWebDriver = Driver.instance
+  def confirmAndSendOnCYAPage(): Unit = {
+    onPage(pageUrl)
+    submitPageById()
+  }
+
+  def validatePageHeader(pageHeader: String): Unit = {
+    onPage(pageUrl)
+    checkH1(pageHeader)
+  }
+
+  def clickOnChangeYourBusinessAddress(): Unit =
+    clickOnById(changeYourBusinessLink)
 
 }

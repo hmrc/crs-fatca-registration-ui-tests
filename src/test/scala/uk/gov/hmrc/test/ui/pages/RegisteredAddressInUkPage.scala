@@ -30,10 +30,9 @@ object RegisteredAddressInUkPage extends BasePage {
     submitPageById()
   }
 
-  /*TODO Create HaveUtrPage object when page is built
   def registeredAddressInUkNo(): Unit = {
     onPage(pageUrl)
     clickOnById(noRadioId)
     submitPageById()
-  }*/
+  }
 }

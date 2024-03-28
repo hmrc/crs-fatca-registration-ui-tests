@@ -27,6 +27,10 @@ object AuthLoginPage extends BasePage {
   private val redirectionUrlById: By = By.id("redirectionUrl")
   private val affinityGroupById: By  = By.id("affinityGroupSelect")
   private val authSubmitById: By     = By.id("submit-top")
+  private val presetDropDownById: By = By.id("presets-dropdown")
+  private val presetSubmitById: By   = By.id("add-preset")
+  private val identifierCTField: By  = By.id("input-4-0-value")
+  private val identifierCTValue      = "1234567890"
 
   def loadPage: this.type = {
     navigateTo(pageUrl)
@@ -37,6 +41,9 @@ object AuthLoginPage extends BasePage {
   def selectAffinityGroup(affinityGroup: String): Unit =
     selectDropdownById(affinityGroupById).selectByVisibleText(affinityGroup)
 
+  private def selectPresetAsCT(presetType: String): Unit =
+    selectDropdownById(presetDropDownById).selectByVisibleText(presetType)
+
   def loginAsNonAutomatchedOrgAdmin(): RegistrationTypePage.type = {
     loadPage
     sendTextById(redirectionUrlById, redirectUrl)
@@ -44,13 +51,35 @@ object AuthLoginPage extends BasePage {
     clickOnById(authSubmitById)
     RegistrationTypePage
   }
-  /* TODO - build out automatched Login as available
+
+  def loginAsNonAutomatchedIndAdmin(): RegistrationTypePage.type = {
+    loadPage
+    sendTextById(redirectionUrlById, redirectUrl)
+    selectAffinityGroup("Individual")
+    clickOnById(authSubmitById)
+    RegistrationTypePage
+  }
+
   def loginAsAutomatchedOrgAdmin(): IsThisYourBusinessPage.type = {
+    loadPage
     sendTextById(redirectionUrlById, redirectUrl)
     selectAffinityGroup("Organisation")
-    <further steps to add CT enrolment to automatch the organisation>
+    selectPresetAsCT("CT")
+    clickOnById(presetSubmitById)
+    sendTextById(identifierCTField, identifierCTValue)
     clickOnById(authSubmitById)
     IsThisYourBusinessPage
-  }*/
+  }
+
+  def loginAsAutomatchedIndAdmin(): IsThisYourBusinessPage.type = {
+    loadPage
+    sendTextById(redirectionUrlById, redirectUrl)
+    selectAffinityGroup("Individual")
+    selectPresetAsCT("CT")
+    clickOnById(presetSubmitById)
+    sendTextById(identifierCTField, identifierCTValue)
+    clickOnById(authSubmitById)
+    IsThisYourBusinessPage
+  }
 
 }
