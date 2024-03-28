@@ -18,10 +18,9 @@ package uk.gov.hmrc.test.ui.pages
 
 import org.openqa.selenium.By
 
-
 object CheckYourAnswerPage extends BasePage {
-  override val pageUrl: String = baseUrl + "/check-your-answers"
-  private val changeYourBusinessLink   = By.id("business-with-i-d-name")
+  override val pageUrl: String       = baseUrl + "/check-your-answers"
+  private val changeYourBusinessLink = By.id("business-with-i-d-name")
 
   def confirmAndSendOnCYAPage(): Unit = {
     onPage(pageUrl)
@@ -33,8 +32,7 @@ object CheckYourAnswerPage extends BasePage {
     checkH1(pageHeader)
   }
 
-  def clickOnChangeYourBusinessAddress(): Unit = {
+  def clickOnChangeYourBusinessAddress(): Unit =
     clickOnById(changeYourBusinessLink)
-  }
 
 }

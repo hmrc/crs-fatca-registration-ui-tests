@@ -37,7 +37,7 @@ trait BasePage extends BrowserDriver with Matchers {
   private val countryOption   = By.id("country__option--0")
   val randomisedNino: String  = new Generator().nextNino.toString()
   val randomisedUtr: String   = new SaUtrGenerator().nextSaUtr.toString()
-  private val pageHeader   = By.tagName("h1")
+  private val pageHeader      = By.tagName("h1")
 
   def navigateTo(url: String): Unit =
     driver.navigate().to(url)

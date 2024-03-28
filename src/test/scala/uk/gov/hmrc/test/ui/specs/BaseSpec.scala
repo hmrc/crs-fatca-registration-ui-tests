@@ -16,7 +16,6 @@
 
 package uk.gov.hmrc.test.ui.specs
 
-import org.scalatest._
 import org.scalatest.featurespec.AnyFeatureSpec
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.{BeforeAndAfterEach, GivenWhenThen}

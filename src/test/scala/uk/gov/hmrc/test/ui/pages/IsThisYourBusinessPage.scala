@@ -16,12 +16,11 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-import org.openqa.selenium.By
-
 object IsThisYourBusinessPage extends BasePage {
   override val pageUrl: String = baseUrl + "/is-this-your-business"
 
   def confirmMatchedBusiness(): Unit = {
+    onPage(pageUrl)
     clickOnYesRadioButton()
     submitPageById()
   }

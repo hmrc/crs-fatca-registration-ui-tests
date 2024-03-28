@@ -19,14 +19,18 @@ package uk.gov.hmrc.test.ui.specs
 import uk.gov.hmrc.test.ui.pages._
 import uk.gov.hmrc.test.ui.specs.tags._
 
-class OrgRegistrationSpec extends BaseSpec {
+class OrgRegistrationWithIndAffinitySpec extends BaseSpec {
 
   Feature("Organisation Registration") {
 
-    Scenario("Organisation with UTR registers for CRS-FATCA as a limited company ", RegistrationTests, ZapTests) {
+    Scenario(
+      "Organisation registration with UTR and with Individual affinity. Second contact option should be not available",
+      RegistrationTests,
+      ZapTests
+    ) {
 
-      Given("User logs in as an Organisation")
-      AuthLoginPage.loginAsNonAutomatchedOrgAdmin()
+      Given("User logs in as an Individual")
+      AuthLoginPage.loginAsNonAutomatchedIndAdmin()
       When("The user makes their way through the journey")
       RegistrationTypePage.registerAsOrgOrSoleTrader("Limited Company")
       RegisteredAddressInUkPage.registeredAddressInUkYes()
@@ -35,30 +39,18 @@ class OrgRegistrationSpec extends BaseSpec {
       IsThisYourBusinessPage.confirmMatchedBusiness()
       AddContact.continueSettingYourContact()
       AddContact.addFirstContact()
-      AddContact.confirmSecondContactAvailabilityYes()
-      AddContact.addSecondContact()
       CheckYourAnswerPage.confirmAndSendOnCYAPage()
       //Confirmation Page is not available now, update this once it is available
     }
 
-    Scenario("Auto-matched Organisation with CT enrolment registers for CRS-FATCA", RegistrationTests, ZapTests) {
+    Scenario(
+      "Organisation registration without UTR and with Individual affinity. Second contact option should be not available",
+      RegistrationTests,
+      ZapTests
+    ) {
 
-      Given("User logs in as an Organisation")
-      AuthLoginPage.loginAsAutomatchedOrgAdmin()
-      When("The user makes their way through the journey")
-      BusinessNamePage.confirmBusinessAddressInUkYes()
-      AddContact.continueSettingYourContact()
-      AddContact.addFirstContact()
-      AddContact.confirmSecondContactAvailabilityYes()
-      AddContact.addSecondContact()
-      CheckYourAnswerPage.confirmAndSendOnCYAPage()
-      //Confirmation Page is not available now, update this once it is available
-    }
-
-    Scenario("Organisation without UTR registers for CRS-FATCA as a limited company ", RegistrationTests, ZapTests) {
-
-      Given("User logs in as an Organisation")
-      AuthLoginPage.loginAsNonAutomatchedOrgAdmin()
+      Given("User logs in as an Individual")
+      AuthLoginPage.loginAsNonAutomatchedIndAdmin()
       When("The user makes their way through the journey")
       RegistrationTypePage.registerAsOrgOrSoleTrader("Limited Company")
       RegisteredAddressInUkPage.registeredAddressInUkNo()
@@ -69,10 +61,17 @@ class OrgRegistrationSpec extends BaseSpec {
       BusinessAddressWithoutIDNonUKPage.enterAddressNonUK()
       AddContact.continueSettingYourContact()
       AddContact.addFirstContact()
-      AddContact.confirmSecondContactAvailabilityYes()
-      AddContact.addSecondContact()
       CheckYourAnswerPage.confirmAndSendOnCYAPage()
       //Confirmation Page is not available now, update this once it is available
+    }
+
+    Scenario("Auto-matched user,login with Individual affinity", RegistrationTests, ZapTests) {
+
+      Given("User logs in as an Individual")
+      AuthLoginPage.loginAsAutomatchedIndAdmin()
+      When("The user makes their way through regular journey")
+      RegistrationTypePage.checkPage()
+      RegistrationTypePage.checkH1("What are you registering as?")
     }
 
   }

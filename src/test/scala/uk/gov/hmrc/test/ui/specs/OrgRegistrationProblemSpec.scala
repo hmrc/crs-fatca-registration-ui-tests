@@ -48,7 +48,11 @@ class OrgRegistrationProblemSpec extends BaseSpec {
       BusinessNotIdentifiedPage.validatePageHeader("The details you entered did not match our records")
     }
 
-    Scenario("Auto Matched Organisation with Non-Matched business Address - Different Business", RegistrationTests, ZapTests) {
+    Scenario(
+      "Auto Matched Organisation with Non-Matched business Address - Different Business",
+      RegistrationTests,
+      ZapTests
+    ) {
 
       Given("User logs in as an Organisation")
       AuthLoginPage.loginAsAutomatchedOrgAdmin()
@@ -74,12 +78,9 @@ class OrgRegistrationProblemSpec extends BaseSpec {
       AuthLoginPage.loginAsAutomatchedOrgAdmin()
       When("The user makes their way through the journey")
       BusinessNamePage.confirmBusinessAddressInUkYes()
-      ContactPage.continueSettingYourContact()
-      ContactPage.enterFirstContactName()
-      ContactPage.enterFirstContactEmail()
-      ContactPage.confirmFirstContactTelephoneAvailable()
-      ContactPage.enterFirstContactTelephone()
-      ContactPage.confirmSecondContactAvailabilityNo()
+      AddContact.continueSettingYourContact()
+      AddContact.addFirstContact()
+      AddContact.confirmSecondContactAvailabilityNo()
       CheckYourAnswerPage.validatePageHeader("Check your answers before you register for CRS and FATCA")
       //Commenting below code to figure out id for change button on CYA
       //CheckYourAnswerPage.clickOnChangeYourBusinessAddress()

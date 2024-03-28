@@ -52,10 +52,29 @@ object AuthLoginPage extends BasePage {
     RegistrationTypePage
   }
 
+  def loginAsNonAutomatchedIndAdmin(): RegistrationTypePage.type = {
+    loadPage
+    sendTextById(redirectionUrlById, redirectUrl)
+    selectAffinityGroup("Individual")
+    clickOnById(authSubmitById)
+    RegistrationTypePage
+  }
+
   def loginAsAutomatchedOrgAdmin(): IsThisYourBusinessPage.type = {
     loadPage
     sendTextById(redirectionUrlById, redirectUrl)
     selectAffinityGroup("Organisation")
+    selectPresetAsCT("CT")
+    clickOnById(presetSubmitById)
+    sendTextById(identifierCTField, identifierCTValue)
+    clickOnById(authSubmitById)
+    IsThisYourBusinessPage
+  }
+
+  def loginAsAutomatchedIndAdmin(): IsThisYourBusinessPage.type = {
+    loadPage
+    sendTextById(redirectionUrlById, redirectUrl)
+    selectAffinityGroup("Individual")
     selectPresetAsCT("CT")
     clickOnById(presetSubmitById)
     sendTextById(identifierCTField, identifierCTValue)
