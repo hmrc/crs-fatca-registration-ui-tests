@@ -19,6 +19,7 @@ package uk.gov.hmrc.test.ui.specs
 import uk.gov.hmrc.test.ui.pages._
 import uk.gov.hmrc.test.ui.specs.tags._
 
+//TODO Remove this file post discussion with Dev Team , if it is covered as part of unit test
 class OrgRegistrationProblemSpec extends BaseSpec {
 
   Feature("Organisation Registration Problem Page Validation") {

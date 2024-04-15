@@ -38,7 +38,7 @@ class OrgRegistrationSpec extends BaseSpec {
       AddContact.confirmSecondContactAvailabilityYes()
       AddContact.addSecondContact()
       CheckYourAnswerPage.confirmAndSendOnCYAPage()
-      //Confirmation Page is not available now, update this once it is available
+      ConfirmRegistrationPage.checkPage()
     }
 
     Scenario("Auto-matched Organisation with CT enrolment registers for CRS-FATCA", RegistrationTests, ZapTests) {
@@ -52,7 +52,7 @@ class OrgRegistrationSpec extends BaseSpec {
       AddContact.confirmSecondContactAvailabilityYes()
       AddContact.addSecondContact()
       CheckYourAnswerPage.confirmAndSendOnCYAPage()
-      //Confirmation Page is not available now, update this once it is available
+      ConfirmRegistrationPage.checkPage()
     }
 
     Scenario("Organisation without UTR registers for CRS-FATCA as a limited company ", RegistrationTests, ZapTests) {
@@ -72,7 +72,24 @@ class OrgRegistrationSpec extends BaseSpec {
       AddContact.confirmSecondContactAvailabilityYes()
       AddContact.addSecondContact()
       CheckYourAnswerPage.confirmAndSendOnCYAPage()
-      //Confirmation Page is not available now, update this once it is available
+      ConfirmRegistrationPage.checkPage()
+    }
+
+    Scenario("Organisation with UTR registers for CRS-FATCA as a Sole trader", RegistrationTests, ZapTests) {
+
+      Given("User logs in as an Organisation")
+      AuthLoginPage.loginAsNonAutomatchedOrgAdmin()
+      When("The user makes their way through the journey")
+      RegistrationTypePage.registerAsOrgOrSoleTrader("Sole Trader")
+      RegisteredAddressInUkPage.registeredAddressInUkYes()
+      UtrPage.enterValidUtr("1234567890")
+      YourNamePage.enterYourName("sfirstName", "slastName")
+      IsThisYourBusinessPage.confirmMatchedBusiness()
+      IndividualEmailPage.enterIndividualEmail()
+      IndividualHavePhonePage.confirmIndividualHavePhone()
+      IndividualPhonePage.enterIndividualTelephone()
+      CheckYourAnswerPage.confirmAndSendOnCYAPage()
+      ConfirmRegistrationPage.checkPage()
     }
 
   }

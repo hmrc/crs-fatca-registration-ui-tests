@@ -36,7 +36,7 @@ object RegistrationTypePage extends BasePage {
       case "LLP"             => llpRadioId
       case "Unincorporated"  => unincorporatedRadioId
       case "Sole Trader"     => soleTraderRadioId
-      case "Individual"      => individualRadioId
+      case "An individual not connected to a business"      => individualRadioId
     })
     submitPageById()
   }

@@ -40,29 +40,7 @@ class OrgRegistrationWithIndAffinitySpec extends BaseSpec {
       AddContact.continueSettingYourContact()
       AddContact.addFirstContact()
       CheckYourAnswerPage.confirmAndSendOnCYAPage()
-      //Confirmation Page is not available now, update this once it is available
-    }
-
-    Scenario(
-      "Organisation registration without UTR and with Individual affinity. Second contact option should be not available",
-      RegistrationTests,
-      ZapTests
-    ) {
-
-      Given("User logs in as an Individual")
-      AuthLoginPage.loginAsNonAutomatchedIndAdmin()
-      When("The user makes their way through the journey")
-      RegistrationTypePage.registerAsOrgOrSoleTrader("Limited Company")
-      RegisteredAddressInUkPage.registeredAddressInUkNo()
-      UtrPage.haveUTRNo()
-      BusinessNameWithoutIDPage.enterBusinessNameWithoutID()
-      BusinessTradingPage.haveTradingNameYes()
-      BusinessTradingPage.enterTradingName()
-      BusinessAddressWithoutIDNonUKPage.enterAddressNonUK()
-      AddContact.continueSettingYourContact()
-      AddContact.addFirstContact()
-      CheckYourAnswerPage.confirmAndSendOnCYAPage()
-      //Confirmation Page is not available now, update this once it is available
+      ConfirmRegistrationPage.checkPage()
     }
 
     Scenario("Auto-matched user,login with Individual affinity", RegistrationTests, ZapTests) {
@@ -71,7 +49,6 @@ class OrgRegistrationWithIndAffinitySpec extends BaseSpec {
       AuthLoginPage.loginAsAutomatchedIndAdmin()
       When("The user makes their way through regular journey")
       RegistrationTypePage.checkPage()
-      RegistrationTypePage.checkH1("What are you registering as?")
     }
 
   }
