@@ -38,7 +38,7 @@ class OrgRegistrationWithIndAffinitySpec extends BaseSpec {
       BusinessNamePage.enterBusinessName("CRSFATCA company")
       IsThisYourBusinessPage.confirmMatchedBusiness()
       AddContact.continueSettingYourContact()
-      AddContact.addFirstContact()
+      .addFirstContact()
       CheckYourAnswerPage.confirmAndSendOnCYAPage()
       ConfirmRegistrationPage.checkPage()
     }

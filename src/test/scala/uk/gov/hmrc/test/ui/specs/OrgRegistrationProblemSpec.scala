@@ -80,8 +80,8 @@ class OrgRegistrationProblemSpec extends BaseSpec {
       When("The user makes their way through the journey")
       BusinessNamePage.confirmBusinessAddressInUkYes()
       AddContact.continueSettingYourContact()
-      AddContact.addFirstContact()
-      AddContact.confirmSecondContactAvailabilityNo()
+      .addFirstContact()
+      .confirmSecondContactAvailabilityNo()
       CheckYourAnswerPage.validatePageHeader("Check your answers before you register for CRS and FATCA")
       //Commenting below code to figure out id for change button on CYA
       //CheckYourAnswerPage.clickOnChangeYourBusinessAddress()

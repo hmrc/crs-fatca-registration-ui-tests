@@ -22,9 +22,10 @@ object AddContact extends BasePage {
   override val pageUrl: String = baseUrl
   private val textInputField   = By.id("value")
 
-  def continueSettingYourContact(): Unit = {
+  def continueSettingYourContact(): this.type = {
     onPage(baseUrl + "/your-contact-details")
     submitPageById()
+    this
   }
 
   def enterFirstContactName(): Unit = {
@@ -51,10 +52,11 @@ object AddContact extends BasePage {
     submitPageById()
   }
 
-  def confirmSecondContactAvailabilityYes(): Unit = {
+  def confirmSecondContactAvailabilityYes(): this.type = {
     onPage(baseUrl + "/have-second-contact")
     clickOnYesRadioButton()
     submitPageById()
+    this
   }
 
   def confirmSecondContactAvailabilityNo(): Unit = {
@@ -87,18 +89,20 @@ object AddContact extends BasePage {
     submitPageById()
   }
 
-  def addFirstContact(): Unit = {
+  def addFirstContact(): this.type = {
     enterFirstContactName()
     enterFirstContactEmail()
     confirmFirstContactTelephoneAvailable()
     enterFirstContactTelephone()
+    this
   }
 
-  def addSecondContact(): Unit = {
+  def addSecondContact(): this.type = {
     enterSecondContactName()
     enterSecondContactEmail()
     confirmSecondContactTelephoneAvailable()
     enterSecondContactTelephone()
+    this
   }
 
 }
