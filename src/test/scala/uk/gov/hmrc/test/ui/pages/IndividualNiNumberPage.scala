@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,13 +14,18 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.driver
+package uk.gov.hmrc.test.ui.pages
 
-import org.openqa.selenium.remote.RemoteWebDriver
-import uk.gov.hmrc.selenium.webdriver.Driver
+import org.openqa.selenium.By
 
-trait BrowserDriver {
+object IndividualNiNumberPage extends BasePage {
+  override val pageUrl: String = baseUrl + "/ni-number"
+  private val textInputField   = By.id("ni-number")
 
-  implicit def driver: RemoteWebDriver = Driver.instance
+  def enterIndividualNiNumber(niNumber: String): Unit = {
+    onPage(pageUrl)
+    sendTextById(textInputField, niNumber)
+    submitPageById()
+  }
 
 }

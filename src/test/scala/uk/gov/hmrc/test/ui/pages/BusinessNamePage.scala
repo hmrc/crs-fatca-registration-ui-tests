@@ -23,9 +23,25 @@ object BusinessNamePage extends BasePage {
 
   private val businessNameId = By.id("value")
 
-  def enterBusinessName(): Unit = {
+  def enterBusinessName(businessName: String): Unit = {
     onPage(pageUrl)
-    sendTextById(businessNameId, "test business name")
+    sendTextById(businessNameId, businessName)
+    submitPageById()
+  }
+
+  def enterBusinessNameWithoutID(): Unit = {
+    onPage(baseUrl + "without-id/business-name")
+    sendTextById(businessNameId, "CRSFATCA company")
+    submitPageById()
+  }
+
+  def confirmBusinessAddressInUkYes(): Unit = {
+    clickOnYesRadioButton()
+    submitPageById()
+  }
+
+  def confirmBusinessAddressInUkNo(): Unit = {
+    clickOnNoRadioButton()
     submitPageById()
   }
 }

@@ -14,13 +14,12 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.driver
+package uk.gov.hmrc.test.ui.pages
 
-import org.openqa.selenium.remote.RemoteWebDriver
-import uk.gov.hmrc.selenium.webdriver.Driver
+object ConfirmRegistrationPage extends BasePage {
 
-trait BrowserDriver {
+  override val pageUrl: String = baseUrl + "/confirm-registration"
 
-  implicit def driver: RemoteWebDriver = Driver.instance
-
+  def checkPage(): Unit =
+    onPage(pageUrl)
 }

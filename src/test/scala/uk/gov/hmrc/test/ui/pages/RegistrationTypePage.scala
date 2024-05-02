@@ -31,14 +31,18 @@ object RegistrationTypePage extends BasePage {
   def registerAsOrgOrSoleTrader(registrationType: String): Unit = {
     onPage(pageUrl)
     clickOnById(registrationType match {
-      case "Limited Company" => limitedCompanyRadioId
-      case "Partnership"     => partnershipRadioId
-      case "LLP"             => llpRadioId
-      case "Unincorporated"  => unincorporatedRadioId
-      case "Sole Trader"     => soleTraderRadioId
+      case "Limited Company"                           => limitedCompanyRadioId
+      case "Partnership"                               => partnershipRadioId
+      case "LLP"                                       => llpRadioId
+      case "Unincorporated"                            => unincorporatedRadioId
+      case "Sole Trader"                               => soleTraderRadioId
+      case "An individual not connected to a business" => individualRadioId
     })
     submitPageById()
   }
+
+  def checkPage(): Unit =
+    onPage(pageUrl)
 
   /* TODO create HaveNiNumberPage page object once page is built
   def registerAsIndividual(): Unit = {

@@ -14,13 +14,14 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.driver
+package uk.gov.hmrc.test.ui.pages
 
-import org.openqa.selenium.remote.RemoteWebDriver
-import uk.gov.hmrc.selenium.webdriver.Driver
+object IndividualIsThisYourAddressPage extends BasePage {
+  override val pageUrl: String = baseUrl + "/without-id/is-this-your-address"
 
-trait BrowserDriver {
-
-  implicit def driver: RemoteWebDriver = Driver.instance
-
+  def confirmMatchedAddress(): Unit = {
+    onPage(pageUrl)
+    clickOnYesRadioButton()
+    submitPageById()
+  }
 }

@@ -14,13 +14,22 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.driver
+package uk.gov.hmrc.test.ui.pages
 
-import org.openqa.selenium.remote.RemoteWebDriver
-import uk.gov.hmrc.selenium.webdriver.Driver
+import org.openqa.selenium.By
 
-trait BrowserDriver {
+object IndividualWithoutIdDOBPage extends BasePage {
+  override val pageUrl: String = baseUrl + "/without-id/date-of-birth"
 
-  implicit def driver: RemoteWebDriver = Driver.instance
+  private val dayId   = By.id("value.day")
+  private val monthId = By.id("value.month")
+  private val yearId  = By.id("value.year")
 
+  def enterDOB(): Unit = {
+    onPage(pageUrl)
+    sendTextById(dayId, "01")
+    sendTextById(monthId, "02")
+    sendTextById(yearId, "1990")
+    submitPageById()
+  }
 }
