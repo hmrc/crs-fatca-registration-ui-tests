@@ -79,9 +79,10 @@ class OrgRegistrationProblemSpec extends BaseSpec {
       AuthLoginPage.loginAsAutomatchedOrgAdmin()
       When("The user makes their way through the journey")
       BusinessNamePage.confirmBusinessAddressInUkYes()
-      AddContact.continueSettingYourContact()
-      .addFirstContact()
-      .confirmSecondContactAvailabilityNo()
+      AddContact
+        .continueSettingYourContact()
+        .addFirstContact()
+        .confirmSecondContactAvailabilityNo()
       CheckYourAnswerPage.validatePageHeader("Check your answers before you register for CRS and FATCA")
       //Commenting below code to figure out id for change button on CYA
       //CheckYourAnswerPage.clickOnChangeYourBusinessAddress()

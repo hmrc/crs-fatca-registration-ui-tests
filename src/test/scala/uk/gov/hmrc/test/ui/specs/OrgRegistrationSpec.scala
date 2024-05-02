@@ -33,10 +33,11 @@ class OrgRegistrationSpec extends BaseSpec {
       UtrPage.enterValidUtr("1234567890")
       BusinessNamePage.enterBusinessName("CRSFATCA company")
       IsThisYourBusinessPage.confirmMatchedBusiness()
-      AddContact.continueSettingYourContact()
-      .addFirstContact()
-      .confirmSecondContactAvailabilityYes()
-      .addSecondContact()
+      AddContact
+        .continueSettingYourContact()
+        .addFirstContact()
+        .confirmSecondContactAvailabilityYes()
+        .addSecondContact()
       CheckYourAnswerPage.confirmAndSendOnCYAPage()
       ConfirmRegistrationPage.checkPage()
     }
@@ -47,10 +48,11 @@ class OrgRegistrationSpec extends BaseSpec {
       AuthLoginPage.loginAsAutomatchedOrgAdmin()
       When("The user makes their way through the journey")
       BusinessNamePage.confirmBusinessAddressInUkYes()
-      AddContact.continueSettingYourContact()
-      .addFirstContact()
-      .confirmSecondContactAvailabilityYes()
-      .addSecondContact()
+      AddContact
+        .continueSettingYourContact()
+        .addFirstContact()
+        .confirmSecondContactAvailabilityYes()
+        .addSecondContact()
       CheckYourAnswerPage.confirmAndSendOnCYAPage()
       ConfirmRegistrationPage.checkPage()
     }
@@ -67,10 +69,11 @@ class OrgRegistrationSpec extends BaseSpec {
       BusinessTradingPage.haveTradingNameYes()
       BusinessTradingPage.enterTradingName()
       BusinessAddressWithoutIDNonUKPage.enterAddressNonUK()
-      AddContact.continueSettingYourContact()
-      .addFirstContact()
-      .confirmSecondContactAvailabilityYes()
-      .addSecondContact()
+      AddContact
+        .continueSettingYourContact()
+        .addFirstContact()
+        .confirmSecondContactAvailabilityYes()
+        .addSecondContact()
       CheckYourAnswerPage.confirmAndSendOnCYAPage()
       ConfirmRegistrationPage.checkPage()
     }

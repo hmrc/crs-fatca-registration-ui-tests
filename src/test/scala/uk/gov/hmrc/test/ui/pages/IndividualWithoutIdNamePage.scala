@@ -22,9 +22,9 @@ object IndividualWithoutIdNamePage extends BasePage {
   override val pageUrl: String = baseUrl + "/without-id/name"
 
   private val firstNameId = By.id("firstName")
-  private val lastNameId = By.id("lastName")
+  private val lastNameId  = By.id("lastName")
 
-  def enterName(firstName: String, lastName:String): Unit = {
+  def enterName(firstName: String, lastName: String): Unit = {
     onPage(pageUrl)
     sendTextById(firstNameId, firstName)
     sendTextById(lastNameId, lastName)

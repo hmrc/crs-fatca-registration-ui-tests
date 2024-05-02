@@ -31,7 +31,7 @@ class IndividualRegistrationSpec extends BaseSpec {
       RegistrationTypePage.registerAsOrgOrSoleTrader("An individual not connected to a business")
       IndividualHaveNiNumberPage.confirmIndividualHaveNiNumber()
       IndividualNiNumberPage.enterIndividualNiNumber("AA000000A")
-      IndividualNamePage.enterName("firstName","lastName")
+      IndividualNamePage.enterName("firstName", "lastName")
       IndividualDOBPage.enterDOB()
       IdentityConfirmedPage.checkPage()
       IndividualEmailPage.enterIndividualEmail()

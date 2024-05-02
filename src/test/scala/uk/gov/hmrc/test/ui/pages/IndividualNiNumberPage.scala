@@ -24,7 +24,7 @@ object IndividualNiNumberPage extends BasePage {
 
   def enterIndividualNiNumber(niNumber: String): Unit = {
     onPage(pageUrl)
-    sendTextById(textInputField,niNumber)
+    sendTextById(textInputField, niNumber)
     submitPageById()
   }
 

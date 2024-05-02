@@ -21,9 +21,9 @@ import org.openqa.selenium.By
 object IndividualWithoutIdDOBPage extends BasePage {
   override val pageUrl: String = baseUrl + "/without-id/date-of-birth"
 
-  private val dayId = By.id("value.day")
+  private val dayId   = By.id("value.day")
   private val monthId = By.id("value.month")
-  private val yearId = By.id("value.year")
+  private val yearId  = By.id("value.year")
 
   def enterDOB(): Unit = {
     onPage(pageUrl)

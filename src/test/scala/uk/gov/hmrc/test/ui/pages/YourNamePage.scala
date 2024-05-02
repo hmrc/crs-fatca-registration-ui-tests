@@ -22,9 +22,9 @@ object YourNamePage extends BasePage {
   override val pageUrl: String = baseUrl + "/your-name"
 
   private val firstNameId = By.id("firstName")
-  private val lastNameId = By.id("lastName")
+  private val lastNameId  = By.id("lastName")
 
-  def enterYourName(firstName: String, lastName:String): Unit = {
+  def enterYourName(firstName: String, lastName: String): Unit = {
     onPage(pageUrl)
     sendTextById(firstNameId, firstName)
     sendTextById(lastNameId, lastName)
