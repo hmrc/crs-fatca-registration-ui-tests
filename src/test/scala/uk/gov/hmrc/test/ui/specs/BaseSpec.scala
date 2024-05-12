@@ -19,6 +19,7 @@ package uk.gov.hmrc.test.ui.specs
 import org.scalatest.featurespec.AnyFeatureSpec
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.{BeforeAndAfterEach, GivenWhenThen}
+import uk.gov.hmrc.domain.{Generator, SaUtrGenerator}
 import uk.gov.hmrc.selenium.webdriver.{Browser, ScreenshotOnFailure}
 
 trait BaseSpec
