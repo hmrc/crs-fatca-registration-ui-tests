@@ -35,4 +35,8 @@ trait BaseSpec
   override def afterEach(): Unit =
     quitBrowser()
 
+  val randomisedNino: String = new Generator().nextNino.toString()
+  val randomisedUtr: String = new SaUtrGenerator().nextSaUtr.toString()
+
+
 }
