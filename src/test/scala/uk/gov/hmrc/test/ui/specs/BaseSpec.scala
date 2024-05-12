@@ -36,7 +36,6 @@ trait BaseSpec
     quitBrowser()
 
   val randomisedNino: String = new Generator().nextNino.toString()
-  val randomisedUtr: String = new SaUtrGenerator().nextSaUtr.toString()
-
+  val randomisedUtr: String  = new SaUtrGenerator().nextSaUtr.toString()
 
 }
