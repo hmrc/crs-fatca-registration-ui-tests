@@ -30,7 +30,7 @@ object AuthLoginPage extends BasePage {
   private val presetDropDownById: By = By.id("presets-dropdown")
   private val presetSubmitById: By   = By.id("add-preset")
   private val identifierCTField: By  = By.id("input-4-0-value")
-  private val identifierCTValue      = "1234567890"
+  private val identifierCTValue      = "1114567890"
 
   def loadPage: this.type = {
     navigateTo(pageUrl)
