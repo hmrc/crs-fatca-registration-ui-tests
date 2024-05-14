@@ -17,8 +17,9 @@
 package uk.gov.hmrc.test.ui.pages
 
 import org.openqa.selenium.By
+import uk.gov.hmrc.test.ui.specs.IdGenerators
 
-object UtrPage extends BasePage {
+object UtrPage extends BasePage with IdGenerators {
 
   override val pageUrl: String = baseUrl + "/utr"
 

@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,24 +16,21 @@
 
 package uk.gov.hmrc.test.ui.specs
 
-import org.scalatest.featurespec.AnyFeatureSpec
-import org.scalatest.matchers.should.Matchers
-import org.scalatest.{BeforeAndAfterEach, GivenWhenThen}
-import uk.gov.hmrc.selenium.webdriver.{Browser, ScreenshotOnFailure}
+import uk.gov.hmrc.domain.{Generator, SaUtrGenerator}
 
-trait BaseSpec
-    extends AnyFeatureSpec
-    with GivenWhenThen
-    with Matchers
-    with BeforeAndAfterEach
-    with Browser
-    with ScreenshotOnFailure
-    with IdGenerators {
+trait IdGenerators {
 
-  override def beforeEach(): Unit =
-    startBrowser()
+  val randomisedNino: String = new Generator().nextNino.toString()
+  val randomisedUtr: String  = new SaUtrGenerator().nextSaUtr.toString()
 
-  override def afterEach(): Unit =
-    quitBrowser()
+  //prefixes
+  val ctutr          = "111"
+  val individualNino = "AA1"
+
+  def generateUtr(prefix: String) =
+    prefix + randomisedUtr.substring(3)
+
+  def generateNino(prefix: String) =
+    prefix + randomisedNino.substring(3)
 
 }

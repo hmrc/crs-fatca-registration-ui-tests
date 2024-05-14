@@ -18,8 +18,9 @@ package uk.gov.hmrc.test.ui.pages
 
 import org.openqa.selenium.By
 import uk.gov.hmrc.test.ui.conf.TestConfiguration
+import uk.gov.hmrc.test.ui.specs.IdGenerators
 
-object AuthLoginPage extends BasePage {
+object AuthLoginPage extends BasePage with IdGenerators {
   override val pageUrl: String = TestConfiguration.url("auth-login-stub") + "/gg-sign-in"
 
   private val redirectUrl: String = TestConfiguration.url("crs-fatca-registration-frontend")
@@ -30,7 +31,7 @@ object AuthLoginPage extends BasePage {
   private val presetDropDownById: By = By.id("presets-dropdown")
   private val presetSubmitById: By   = By.id("add-preset")
   private val identifierCTField: By  = By.id("input-4-0-value")
-  private val identifierCTValue      = "1114567890"
+  private val identifierCTValue      = generateUtr(ctutr)
 
   def loadPage: this.type = {
     navigateTo(pageUrl)

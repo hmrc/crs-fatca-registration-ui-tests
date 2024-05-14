@@ -17,12 +17,11 @@
 package uk.gov.hmrc.test.ui.pages
 
 import org.openqa.selenium.By
-import org.scalatest.matchers.should.Matchers
 import org.openqa.selenium.support.ui.Select
 import org.scalatest.Assertion
+import org.scalatest.matchers.should.Matchers
 import uk.gov.hmrc.test.ui.conf.TestConfiguration
 import uk.gov.hmrc.test.ui.driver.BrowserDriver
-import uk.gov.hmrc.domain._
 
 trait BasePage extends BrowserDriver with Matchers {
 
@@ -35,8 +34,6 @@ trait BasePage extends BrowserDriver with Matchers {
   private val noRadioId       = By.id("value-no")
   private val countryDropdown = By.id("country")
   private val countryOption   = By.id("country__option--0")
-  val randomisedNino: String  = new Generator().nextNino.toString()
-  val randomisedUtr: String   = new SaUtrGenerator().nextSaUtr.toString()
   private val pageHeader      = By.tagName("h1")
 
   def navigateTo(url: String): Unit =

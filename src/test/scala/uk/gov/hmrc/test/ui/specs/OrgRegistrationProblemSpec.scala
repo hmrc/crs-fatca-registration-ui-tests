@@ -31,7 +31,7 @@ class OrgRegistrationProblemSpec extends BaseSpec {
       When("The user makes their way through the journey")
       RegistrationTypePage.registerAsOrgOrSoleTrader("Limited Company")
       RegisteredAddressInUkPage.registeredAddressInUkYes()
-      UtrPage.enterValidUtr("1114567890")
+      UtrPage.enterValidUtr(generateUtr(ctutr))
       BusinessNamePage.enterBusinessName("Non Matched business name")
       BusinessNotIdentifiedPage.validatePageHeader("The details you entered did not match our records")
     }
@@ -43,7 +43,7 @@ class OrgRegistrationProblemSpec extends BaseSpec {
       When("The user makes their way through the journey")
       RegistrationTypePage.registerAsOrgOrSoleTrader("Limited Company")
       RegisteredAddressInUkPage.registeredAddressInUkYes()
-      UtrPage.enterValidUtr("1114567890")
+      UtrPage.enterValidUtr(generateUtr(ctutr))
       BusinessNamePage.enterBusinessName("CRSFATCA Company")
       BusinessNamePage.confirmBusinessAddressInUkNo()
       BusinessNotIdentifiedPage.validatePageHeader("The details you entered did not match our records")

@@ -30,7 +30,7 @@ class OrgRegistrationSpec extends BaseSpec {
       When("The user makes their way through the journey")
       RegistrationTypePage.registerAsOrgOrSoleTrader("Limited Company")
       RegisteredAddressInUkPage.registeredAddressInUkYes()
-      UtrPage.enterValidUtr("1114567890")
+      UtrPage.enterValidUtr(generateUtr(ctutr))
       BusinessNamePage.enterBusinessName("CRSFATCA company")
       IsThisYourBusinessPage.confirmMatchedBusiness()
       AddContact
@@ -85,7 +85,7 @@ class OrgRegistrationSpec extends BaseSpec {
       When("The user makes their way through the journey")
       RegistrationTypePage.registerAsOrgOrSoleTrader("Sole Trader")
       RegisteredAddressInUkPage.registeredAddressInUkYes()
-      UtrPage.enterValidUtr("1114567890")
+      UtrPage.enterValidUtr(generateUtr(ctutr))
       YourNamePage.enterYourName("sfirstName", "slastName")
       IsThisYourBusinessPage.confirmMatchedBusiness()
       IndividualEmailPage.enterIndividualEmail()
