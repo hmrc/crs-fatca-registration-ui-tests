@@ -69,7 +69,7 @@ class OrgRegistrationProblemSpec extends BaseSpec {
       When("The user makes their way through the journey")
       RegistrationTypePage.registerAsOrgOrSoleTrader("Limited Company")
       RegisteredAddressInUkPage.registeredAddressInUkYes()
-      UtrPage.enterValidUtr("2222222222")
+      UtrPage.enterValidUtr(generateUtr(preRegUtr))
       BusinessNamePage.enterBusinessName("CRSFATCA company")
       OrganisationWithUtrPreRegistered.validatePageHeader("Your organisation is already registered to use this service")
     }

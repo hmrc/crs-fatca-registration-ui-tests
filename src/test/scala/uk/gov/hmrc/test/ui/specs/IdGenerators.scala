@@ -25,6 +25,7 @@ trait IdGenerators {
 
   //prefixes
   val ctutr          = "111"
+  val preRegUtr      = "222"
   val individualNino = "AA1"
 
   def generateUtr(prefix: String) =
