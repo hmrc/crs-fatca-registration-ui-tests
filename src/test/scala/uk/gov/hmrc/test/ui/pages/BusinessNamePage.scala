@@ -28,20 +28,4 @@ object BusinessNamePage extends BasePage {
     sendTextById(businessNameId, businessName)
     submitPageById()
   }
-
-  def enterBusinessNameWithoutID(): Unit = {
-    onPage(baseUrl + "without-id/business-name")
-    sendTextById(businessNameId, "CRSFATCA company")
-    submitPageById()
-  }
-
-  def confirmBusinessAddressInUkYes(): Unit = {
-    clickOnYesRadioButton()
-    submitPageById()
-  }
-
-  def confirmBusinessAddressInUkNo(): Unit = {
-    clickOnNoRadioButton()
-    submitPageById()
-  }
 }

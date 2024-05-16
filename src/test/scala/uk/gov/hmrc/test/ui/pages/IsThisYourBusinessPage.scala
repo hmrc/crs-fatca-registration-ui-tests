@@ -24,4 +24,9 @@ object IsThisYourBusinessPage extends BasePage {
     clickOnYesRadioButton()
     submitPageById()
   }
+
+  def declineMatchedBusiness(): Unit = {
+    clickOnNoRadioButton()
+    submitPageById()
+  }
 }
