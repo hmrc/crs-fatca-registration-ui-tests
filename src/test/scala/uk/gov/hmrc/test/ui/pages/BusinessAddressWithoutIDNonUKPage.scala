@@ -20,7 +20,7 @@ import org.openqa.selenium.By
 
 object BusinessAddressWithoutIDNonUKPage extends BasePage {
 
-  override val pageUrl: String = baseUrl + "/business-name"
+  override val pageUrl: String = baseUrl + "/without-id/business-address"
 
   private val addressLine1 = By.id("addressLine1")
   private val addressLine2 = By.id("addressLine2")
@@ -29,6 +29,7 @@ object BusinessAddressWithoutIDNonUKPage extends BasePage {
   private val postcode     = By.id("postCode")
 
   def enterAddressNonUK(): Unit = {
+    onPage(pageUrl)
     sendTextById(addressLine1, "17 Beechfield Manor")
     sendTextById(addressLine2, "Aghalee")
     sendTextById(city, "Paris")

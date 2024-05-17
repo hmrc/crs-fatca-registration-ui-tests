@@ -22,11 +22,6 @@ object BusinessTradingPage extends BasePage {
   override val pageUrl: String = baseUrl + "/without-id/trading-name"
   private val tradingNameId    = By.id("value")
 
-  def haveTradingNameYes(): Unit = {
-    clickOnYesRadioButton()
-    submitPageById()
-  }
-
   def enterTradingName(): Unit = {
     onPage(pageUrl)
     sendTextById(tradingNameId, "CRSFATCA company")

@@ -28,7 +28,7 @@ object RegistrationTypePage extends BasePage {
   private val soleTraderRadioId     = By.id("value_4")
   private val individualRadioId     = By.id("value_5")
 
-  def registerAsOrgOrSoleTrader(registrationType: String): Unit = {
+  def registerAs(registrationType: String): Unit = {
     onPage(pageUrl)
     clickOnById(registrationType match {
       case "Limited Company"                           => limitedCompanyRadioId
@@ -43,12 +43,4 @@ object RegistrationTypePage extends BasePage {
 
   def checkPage(): Unit =
     onPage(pageUrl)
-
-  /* TODO create HaveNiNumberPage page object once page is built
-  def registerAsIndividual(): Unit = {
-    onPage(pageUrl)
-    clickOnById(individualRadioId)
-    submitPageById()
-  }*/
-
 }

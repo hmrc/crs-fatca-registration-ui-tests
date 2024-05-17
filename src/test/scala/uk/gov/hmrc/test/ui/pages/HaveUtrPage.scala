@@ -16,23 +16,13 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-import org.openqa.selenium.By
+object HaveUtrPage extends BasePage {
 
-object UtrPage extends BasePage {
+  override val pageUrl: String = baseUrl + "/have-utr"
 
-  override val pageUrl: String = baseUrl + "/utr"
-
-  private val utrId = By.id("value")
-
-  def enterUtr(): Unit = {
+  def haveUTRNo(): Unit = {
     onPage(pageUrl)
-    sendTextById(utrId, randomisedUtr)
-    submitPageById()
-  }
-
-  def enterValidUtr(utrToEnter: String): Unit = {
-    onPage(pageUrl)
-    sendTextById(utrId, utrToEnter)
+    clickOnNoRadioButton()
     submitPageById()
   }
 }

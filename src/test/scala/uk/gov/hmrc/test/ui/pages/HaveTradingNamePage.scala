@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,23 +16,12 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-import org.openqa.selenium.By
+object HaveTradingNamePage extends BasePage {
+  override val pageUrl: String = baseUrl + "/without-id/have-trading-name"
 
-object UtrPage extends BasePage {
-
-  override val pageUrl: String = baseUrl + "/utr"
-
-  private val utrId = By.id("value")
-
-  def enterUtr(): Unit = {
+  def haveTradingNameYes(): Unit = {
     onPage(pageUrl)
-    sendTextById(utrId, randomisedUtr)
-    submitPageById()
-  }
-
-  def enterValidUtr(utrToEnter: String): Unit = {
-    onPage(pageUrl)
-    sendTextById(utrId, utrToEnter)
+    clickOnYesRadioButton()
     submitPageById()
   }
 }

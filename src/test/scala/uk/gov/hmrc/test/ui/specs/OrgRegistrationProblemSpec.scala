@@ -29,7 +29,7 @@ class OrgRegistrationProblemSpec extends BaseSpec {
       Given("User logs in as an Organisation")
       AuthLoginPage.loginAsNonAutomatchedOrgAdmin()
       When("The user makes their way through the journey")
-      RegistrationTypePage.registerAsOrgOrSoleTrader("Limited Company")
+      RegistrationTypePage.registerAs("Limited Company")
       RegisteredAddressInUkPage.registeredAddressInUkYes()
       UtrPage.enterValidUtr("1234567890")
       BusinessNamePage.enterBusinessName("Non Matched business name")
@@ -41,11 +41,11 @@ class OrgRegistrationProblemSpec extends BaseSpec {
       Given("User logs in as an Organisation")
       AuthLoginPage.loginAsNonAutomatchedOrgAdmin()
       When("The user makes their way through the journey")
-      RegistrationTypePage.registerAsOrgOrSoleTrader("Limited Company")
+      RegistrationTypePage.registerAs("Limited Company")
       RegisteredAddressInUkPage.registeredAddressInUkYes()
       UtrPage.enterValidUtr("1234567890")
       BusinessNamePage.enterBusinessName("CRSFATCA Company")
-      BusinessNamePage.confirmBusinessAddressInUkNo()
+      IsThisYourBusinessPage.declineMatchedBusiness()
       BusinessNotIdentifiedPage.validatePageHeader("The details you entered did not match our records")
     }
 
@@ -58,7 +58,7 @@ class OrgRegistrationProblemSpec extends BaseSpec {
       Given("User logs in as an Organisation")
       AuthLoginPage.loginAsAutomatchedOrgAdmin()
       When("The user makes their way through the journey")
-      BusinessNamePage.confirmBusinessAddressInUkNo()
+      IsThisYourBusinessPage.declineMatchedBusiness()
       DifferentBusinessPage.validatePageHeader("You’re unable to use this service with this Government Gateway user ID")
     }
 
@@ -67,7 +67,7 @@ class OrgRegistrationProblemSpec extends BaseSpec {
       Given("User logs in as an Organisation")
       AuthLoginPage.loginAsNonAutomatchedOrgAdmin()
       When("The user makes their way through the journey")
-      RegistrationTypePage.registerAsOrgOrSoleTrader("Limited Company")
+      RegistrationTypePage.registerAs("Limited Company")
       RegisteredAddressInUkPage.registeredAddressInUkYes()
       UtrPage.enterValidUtr("2222222222")
       BusinessNamePage.enterBusinessName("CRSFATCA company")
@@ -78,7 +78,7 @@ class OrgRegistrationProblemSpec extends BaseSpec {
       Given("User logs in as an Organisation")
       AuthLoginPage.loginAsAutomatchedOrgAdmin()
       When("The user makes their way through the journey")
-      BusinessNamePage.confirmBusinessAddressInUkYes()
+      IsThisYourBusinessPage.confirmMatchedBusiness()
       AddContact
         .continueSettingYourContact()
         .addFirstContact()
