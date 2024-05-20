@@ -16,16 +16,12 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-object IsThisYourBusinessPage extends BasePage {
-  override val pageUrl: String = baseUrl + "/is-this-your-business"
+object HaveUtrPage extends BasePage {
 
-  def confirmMatchedBusiness(): Unit = {
+  override val pageUrl: String = baseUrl + "/have-utr"
+
+  def haveUTRNo(): Unit = {
     onPage(pageUrl)
-    clickOnYesRadioButton()
-    submitPageById()
-  }
-
-  def declineMatchedBusiness(): Unit = {
     clickOnNoRadioButton()
     submitPageById()
   }

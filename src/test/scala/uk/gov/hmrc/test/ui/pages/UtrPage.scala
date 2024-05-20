@@ -36,9 +36,4 @@ object UtrPage extends BasePage with IdGenerators {
     sendTextById(utrId, utrToEnter)
     submitPageById()
   }
-
-  def haveUTRNo(): Unit = {
-    clickOnNoRadioButton()
-    submitPageById()
-  }
 }

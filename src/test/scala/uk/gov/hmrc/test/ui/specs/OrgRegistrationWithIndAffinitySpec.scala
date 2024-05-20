@@ -32,7 +32,7 @@ class OrgRegistrationWithIndAffinitySpec extends BaseSpec {
       Given("User logs in as an Individual")
       AuthLoginPage.loginAsNonAutomatchedIndAdmin()
       When("The user makes their way through the journey")
-      RegistrationTypePage.registerAsOrgOrSoleTrader("Limited Company")
+      RegistrationTypePage.registerAs("Limited Company")
       RegisteredAddressInUkPage.registeredAddressInUkYes()
       UtrPage.enterValidUtr(generateUtr(ctutr))
       BusinessNamePage.enterBusinessName("CRSFATCA company")
@@ -51,6 +51,5 @@ class OrgRegistrationWithIndAffinitySpec extends BaseSpec {
       When("The user makes their way through regular journey")
       RegistrationTypePage.checkPage()
     }
-
   }
 }

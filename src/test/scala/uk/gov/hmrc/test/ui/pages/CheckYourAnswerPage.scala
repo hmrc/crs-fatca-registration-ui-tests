@@ -32,7 +32,9 @@ object CheckYourAnswerPage extends BasePage {
     checkH1(pageHeader)
   }
 
-  def clickOnChangeYourBusinessAddress(): Unit =
+  def clickOnChangeYourBusinessAddress(): Unit = {
+    onPage(pageUrl)
     clickOnById(changeYourBusinessLink)
+  }
 
 }

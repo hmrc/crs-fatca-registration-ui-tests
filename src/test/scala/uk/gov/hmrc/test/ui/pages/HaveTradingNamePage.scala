@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,17 +16,12 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-object IsThisYourBusinessPage extends BasePage {
-  override val pageUrl: String = baseUrl + "/is-this-your-business"
+object HaveTradingNamePage extends BasePage {
+  override val pageUrl: String = baseUrl + "/without-id/have-trading-name"
 
-  def confirmMatchedBusiness(): Unit = {
+  def haveTradingNameYes(): Unit = {
     onPage(pageUrl)
     clickOnYesRadioButton()
-    submitPageById()
-  }
-
-  def declineMatchedBusiness(): Unit = {
-    clickOnNoRadioButton()
     submitPageById()
   }
 }

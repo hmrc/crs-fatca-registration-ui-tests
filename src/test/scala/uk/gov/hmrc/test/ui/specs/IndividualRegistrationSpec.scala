@@ -23,12 +23,12 @@ class IndividualRegistrationSpec extends BaseSpec {
 
   Feature("Individual Registration") {
 
-    Scenario("Individual with UTR", RegistrationTests, ZapTests) {
+    Scenario("Individual with NINO", RegistrationTests, ZapTests) {
 
       Given("User logs in as an Individual")
       AuthLoginPage.loginAsNonAutomatchedIndAdmin()
       When("The user makes their way through the journey")
-      RegistrationTypePage.registerAsOrgOrSoleTrader("An individual not connected to a business")
+      RegistrationTypePage.registerAs("An individual not connected to a business")
       IndividualHaveNiNumberPage.confirmIndividualHaveNiNumber()
       IndividualNiNumberPage.enterIndividualNiNumber(generateNino(individualNino))
       IndividualNamePage.enterName("firstName", "lastName")
@@ -41,12 +41,12 @@ class IndividualRegistrationSpec extends BaseSpec {
       ConfirmRegistrationPage.checkPage()
     }
 
-    Scenario("Individual without UTR", RegistrationTests, ZapTests) {
+    Scenario("Individual without NINO", RegistrationTests, ZapTests) {
 
       Given("User logs in as an Individual")
       AuthLoginPage.loginAsNonAutomatchedIndAdmin()
       When("The user makes their way through the journey")
-      RegistrationTypePage.registerAsOrgOrSoleTrader("An individual not connected to a business")
+      RegistrationTypePage.registerAs("An individual not connected to a business")
       IndividualHaveNiNumberPage.confirmIndividualDoesNotHaveNiNumber()
       IndividualWithoutIdNamePage.enterName("firstName", "lastName")
       IndividualWithoutIdDOBPage.enterDOB()
