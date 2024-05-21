@@ -30,7 +30,7 @@ class IndividualRegistrationSpec extends BaseSpec {
       When("The user makes their way through the journey")
       RegistrationTypePage.registerAs("An individual not connected to a business")
       IndividualHaveNiNumberPage.confirmIndividualHaveNiNumber()
-      IndividualNiNumberPage.enterIndividualNiNumber("AA000000A")
+      IndividualNiNumberPage.enterIndividualNiNumber(generateNino(individualNino))
       IndividualNamePage.enterName("firstName", "lastName")
       IndividualDOBPage.enterDOB()
       IdentityConfirmedPage.checkPage()

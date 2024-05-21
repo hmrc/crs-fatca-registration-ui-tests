@@ -34,7 +34,7 @@ class OrgRegistrationWithIndAffinitySpec extends BaseSpec {
       When("The user makes their way through the journey")
       RegistrationTypePage.registerAs("Limited Company")
       RegisteredAddressInUkPage.registeredAddressInUkYes()
-      UtrPage.enterValidUtr("1234567890")
+      UtrPage.enterValidUtr(generateUtr(ctutr))
       BusinessNamePage.enterBusinessName("CRSFATCA company")
       IsThisYourBusinessPage.confirmMatchedBusiness()
       AddContact

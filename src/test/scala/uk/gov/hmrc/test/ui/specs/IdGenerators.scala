@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,26 +14,24 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.pages
+package uk.gov.hmrc.test.ui.specs
 
-import org.openqa.selenium.By
-import uk.gov.hmrc.test.ui.specs.IdGenerators
+import uk.gov.hmrc.domain.{Generator, SaUtrGenerator}
 
-object UtrPage extends BasePage with IdGenerators {
+trait IdGenerators {
 
-  override val pageUrl: String = baseUrl + "/utr"
+  val randomisedNino: String = new Generator().nextNino.toString()
+  val randomisedUtr: String  = new SaUtrGenerator().nextSaUtr.toString()
 
-  private val utrId = By.id("value")
+  //prefixes
+  val ctutr          = "111"
+  val preRegUtr      = "222"
+  val individualNino = "AA1"
 
-  def enterUtr(): Unit = {
-    onPage(pageUrl)
-    sendTextById(utrId, randomisedUtr)
-    submitPageById()
-  }
+  def generateUtr(prefix: String) =
+    prefix + randomisedUtr.substring(3)
 
-  def enterValidUtr(utrToEnter: String): Unit = {
-    onPage(pageUrl)
-    sendTextById(utrId, utrToEnter)
-    submitPageById()
-  }
+  def generateNino(prefix: String) =
+    prefix + randomisedNino.substring(3)
+
 }

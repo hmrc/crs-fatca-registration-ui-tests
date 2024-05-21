@@ -31,7 +31,7 @@ class OrgRegistrationProblemSpec extends BaseSpec {
       When("The user makes their way through the journey")
       RegistrationTypePage.registerAs("Limited Company")
       RegisteredAddressInUkPage.registeredAddressInUkYes()
-      UtrPage.enterValidUtr("1234567890")
+      UtrPage.enterValidUtr(generateUtr(ctutr))
       BusinessNamePage.enterBusinessName("Non Matched business name")
       BusinessNotIdentifiedPage.validatePageHeader("The details you entered did not match our records")
     }
@@ -43,7 +43,7 @@ class OrgRegistrationProblemSpec extends BaseSpec {
       When("The user makes their way through the journey")
       RegistrationTypePage.registerAs("Limited Company")
       RegisteredAddressInUkPage.registeredAddressInUkYes()
-      UtrPage.enterValidUtr("1234567890")
+      UtrPage.enterValidUtr(generateUtr(ctutr))
       BusinessNamePage.enterBusinessName("CRSFATCA Company")
       IsThisYourBusinessPage.declineMatchedBusiness()
       BusinessNotIdentifiedPage.validatePageHeader("The details you entered did not match our records")
@@ -69,7 +69,7 @@ class OrgRegistrationProblemSpec extends BaseSpec {
       When("The user makes their way through the journey")
       RegistrationTypePage.registerAs("Limited Company")
       RegisteredAddressInUkPage.registeredAddressInUkYes()
-      UtrPage.enterValidUtr("2222222222")
+      UtrPage.enterValidUtr(generateUtr(preRegUtr))
       BusinessNamePage.enterBusinessName("CRSFATCA company")
       OrganisationWithUtrPreRegistered.validatePageHeader("Your organisation is already registered to use this service")
     }
