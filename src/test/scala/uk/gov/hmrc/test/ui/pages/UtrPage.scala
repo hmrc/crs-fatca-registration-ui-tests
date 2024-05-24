@@ -17,23 +17,16 @@
 package uk.gov.hmrc.test.ui.pages
 
 import org.openqa.selenium.By
-import uk.gov.hmrc.test.ui.specs.IdGenerators
 
-object UtrPage extends BasePage with IdGenerators {
+object UtrPage extends BasePage {
 
   override val pageUrl: String = baseUrl + "/utr"
 
   private val utrId = By.id("value")
 
-  def enterUtr(): Unit = {
+  def enterUtr(utrPrefix: String): Unit = {
     onPage(pageUrl)
-    sendTextById(utrId, randomisedUtr)
-    submitPageById()
-  }
-
-  def enterValidUtr(utrToEnter: String): Unit = {
-    onPage(pageUrl)
-    sendTextById(utrId, utrToEnter)
+    sendTextById(utrId, generateUtr(utrPrefix))
     submitPageById()
   }
 }

@@ -22,7 +22,7 @@ object IndividualPhonePage extends BasePage {
   override val pageUrl: String = baseUrl + "/individual-phone"
   private val textInputField   = By.id("value")
 
-  def enterIndividualTelephone(): Unit = {
+  def enterTelephone(): Unit = {
     onPage(pageUrl)
     sendTextById(textInputField, "01642 123456")
     submitPageById()

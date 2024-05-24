@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.specs
+package uk.gov.hmrc.test.ui.utils
 
 import uk.gov.hmrc.domain.{Generator, SaUtrGenerator}
 
@@ -24,14 +24,14 @@ trait IdGenerators {
   val randomisedUtr: String  = new SaUtrGenerator().nextSaUtr.toString()
 
   //prefixes
-  val ctutr          = "111"
-  val preRegUtr      = "222"
-  val individualNino = "AA1"
+  val validCtUtr: String     = "111"
+  val preRegUtr: String      = "222"
+  val individualNino: String = "AA1"
 
-  def generateUtr(prefix: String) =
+  def generateUtr(prefix: String): String =
     prefix + randomisedUtr.substring(3)
 
-  def generateNino(prefix: String) =
+  def generateNino(prefix: String): String =
     prefix + randomisedNino.substring(3)
 
 }

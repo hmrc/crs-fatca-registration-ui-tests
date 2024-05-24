@@ -16,10 +16,10 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-object IndividualWhereDoYouLivePage extends BasePage {
+object IndividualDoYouLiveInTheUkPage extends BasePage {
   override val pageUrl: String = baseUrl + "/without-id/where-do-you-live"
 
-  def confirmUkAddress(): Unit = {
+  def liveInUkYes(): Unit = {
     onPage(pageUrl)
     clickOnYesRadioButton()
     submitPageById()

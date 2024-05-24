@@ -22,7 +22,7 @@ object CheckYourAnswerPage extends BasePage {
   override val pageUrl: String       = baseUrl + "/check-your-answers"
   private val changeYourBusinessLink = By.id("business-with-i-d-name")
 
-  def confirmAndSendOnCYAPage(): Unit = {
+  def confirmAndSend(): Unit = {
     onPage(pageUrl)
     submitPageById()
   }

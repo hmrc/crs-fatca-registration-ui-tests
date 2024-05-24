@@ -22,9 +22,9 @@ object IndividualNiNumberPage extends BasePage {
   override val pageUrl: String = baseUrl + "/ni-number"
   private val textInputField   = By.id("ni-number")
 
-  def enterIndividualNiNumber(niNumber: String): Unit = {
+  def enterNiNumber(ninoPrefix: String): Unit = {
     onPage(pageUrl)
-    sendTextById(textInputField, niNumber)
+    sendTextById(textInputField, generateNino(ninoPrefix))
     submitPageById()
   }
 

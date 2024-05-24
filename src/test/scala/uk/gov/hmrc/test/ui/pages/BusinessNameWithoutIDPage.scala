@@ -23,7 +23,7 @@ object BusinessNameWithoutIDPage extends BasePage {
 
   private val businessNameId = By.id("value")
 
-  def enterBusinessNameWithoutID(): Unit = {
+  def enterBusinessName(): Unit = {
     onPage(pageUrl)
     sendTextById(businessNameId, "test Business Name")
     submitPageById()

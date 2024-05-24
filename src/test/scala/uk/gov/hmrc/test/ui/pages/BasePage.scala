@@ -22,19 +22,20 @@ import org.scalatest.Assertion
 import org.scalatest.matchers.should.Matchers
 import uk.gov.hmrc.test.ui.conf.TestConfiguration
 import uk.gov.hmrc.test.ui.driver.BrowserDriver
+import uk.gov.hmrc.test.ui.utils.IdGenerators
 
-trait BasePage extends BrowserDriver with Matchers {
+trait BasePage extends BrowserDriver with Matchers with IdGenerators {
 
   case class PageNotFoundException(message: String) extends Exception(message)
 
   val pageUrl: String
-  val baseUrl: String         = TestConfiguration.url("crs-fatca-registration-frontend") + "/register"
-  val submitButtonId: By      = By.id("submit")
-  private val yesRadioId      = By.id("value")
-  private val noRadioId       = By.id("value-no")
-  private val countryDropdown = By.id("country")
-  private val countryOption   = By.id("country__option--0")
-  private val pageHeader      = By.tagName("h1")
+  val baseUrl: String             = TestConfiguration.url("crs-fatca-registration-frontend") + "/register"
+  private val submitButtonId: By  = By.id("submit")
+  private val yesRadioId: By      = By.id("value")
+  private val noRadioId: By       = By.id("value-no")
+  private val countryDropdown: By = By.id("country")
+  private val countryOption: By   = By.id("country__option--0")
+  private val pageHeader: By      = By.tagName("h1")
 
   def navigateTo(url: String): Unit =
     driver.navigate().to(url)

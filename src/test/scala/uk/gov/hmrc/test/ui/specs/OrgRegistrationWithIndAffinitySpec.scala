@@ -21,10 +21,10 @@ import uk.gov.hmrc.test.ui.specs.tags._
 
 class OrgRegistrationWithIndAffinitySpec extends BaseSpec {
 
-  Feature("Organisation Registration") {
+  Feature("Organisation Registration with Individual Affinity") {
 
     Scenario(
-      "Organisation registration with UTR and with Individual affinity. Second contact option should be not available",
+      "Non-Automatched Individual affinity user registers with a UTR - second contact option should be not available",
       RegistrationTests,
       ZapTests
     ) {
@@ -34,17 +34,17 @@ class OrgRegistrationWithIndAffinitySpec extends BaseSpec {
       When("The user makes their way through the journey")
       RegistrationTypePage.registerAs("Limited Company")
       RegisteredAddressInUkPage.registeredAddressInUkYes()
-      UtrPage.enterValidUtr(generateUtr(ctutr))
-      BusinessNamePage.enterBusinessName("CRSFATCA company")
-      IsThisYourBusinessPage.confirmMatchedBusiness()
+      UtrPage.enterUtr(validCtUtr)
+      BusinessNamePage.enterBusinessNameMatched()
+      IsThisYourBusinessPage.matchedBusinessYes()
       AddContact
         .continueSettingYourContact()
         .addFirstContact()
-      CheckYourAnswerPage.confirmAndSendOnCYAPage()
+      CheckYourAnswerPage.confirmAndSend()
       ConfirmRegistrationPage.checkPage()
     }
 
-    Scenario("Auto-matched user,login with Individual affinity", RegistrationTests, ZapTests) {
+    Scenario("Auto-matched Individual affinity user registers", RegistrationTests, ZapTests) {
 
       Given("User logs in as an Individual")
       AuthLoginPage.loginAsAutomatchedIndAdmin()

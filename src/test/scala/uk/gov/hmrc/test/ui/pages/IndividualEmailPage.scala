@@ -22,7 +22,7 @@ object IndividualEmailPage extends BasePage {
   override val pageUrl: String = baseUrl + "/individual-email"
   private val textInputField   = By.id("value")
 
-  def enterIndividualEmail(): Unit = {
+  def enterEmail(): Unit = {
     onPage(pageUrl)
     sendTextById(textInputField, "testIndividualEmail@test.com")
     submitPageById()

@@ -40,26 +40,26 @@ object AddContact extends BasePage {
     submitPageById()
   }
 
-  def confirmFirstContactTelephoneAvailable(): Unit = {
+  def firstContactHavePhoneYes(): Unit = {
     onPage(baseUrl + "/have-phone")
     clickOnYesRadioButton()
     submitPageById()
   }
 
-  def enterFirstContactTelephone(): Unit = {
+  def enterFirstContactPhone(): Unit = {
     onPage(baseUrl + "/phone")
     sendTextById(textInputField, "01642 123456")
     submitPageById()
   }
 
-  def confirmSecondContactAvailabilityYes(): this.type = {
+  def haveSecondContactYes(): this.type = {
     onPage(baseUrl + "/have-second-contact")
     clickOnYesRadioButton()
     submitPageById()
     this
   }
 
-  def confirmSecondContactAvailabilityNo(): Unit = {
+  def haveSecondContactNo(): Unit = {
     onPage(baseUrl + "/have-second-contact")
     clickOnNoRadioButton()
     submitPageById()
@@ -77,13 +77,13 @@ object AddContact extends BasePage {
     submitPageById()
   }
 
-  def confirmSecondContactTelephoneAvailable(): Unit = {
+  def secondContactHavePhoneYes(): Unit = {
     onPage(baseUrl + "/second-contact-have-phone")
     clickOnYesRadioButton()
     submitPageById()
   }
 
-  def enterSecondContactTelephone(): Unit = {
+  def enterSecondContactPhone(): Unit = {
     onPage(baseUrl + "/second-contact-phone")
     sendTextById(textInputField, "01642 123456")
     submitPageById()
@@ -92,16 +92,16 @@ object AddContact extends BasePage {
   def addFirstContact(): this.type = {
     enterFirstContactName()
     enterFirstContactEmail()
-    confirmFirstContactTelephoneAvailable()
-    enterFirstContactTelephone()
+    firstContactHavePhoneYes()
+    enterFirstContactPhone()
     this
   }
 
   def addSecondContact(): this.type = {
     enterSecondContactName()
     enterSecondContactEmail()
-    confirmSecondContactTelephoneAvailable()
-    enterSecondContactTelephone()
+    secondContactHavePhoneYes()
+    enterSecondContactPhone()
     this
   }
 

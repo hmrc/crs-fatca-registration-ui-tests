@@ -18,68 +18,69 @@ package uk.gov.hmrc.test.ui.pages
 
 import org.openqa.selenium.By
 import uk.gov.hmrc.test.ui.conf.TestConfiguration
-import uk.gov.hmrc.test.ui.specs.IdGenerators
 
-object AuthLoginPage extends BasePage with IdGenerators {
+object AuthLoginPage extends BasePage {
   override val pageUrl: String = TestConfiguration.url("auth-login-stub") + "/gg-sign-in"
 
-  private val redirectUrl: String = TestConfiguration.url("crs-fatca-registration-frontend")
+  private val redirectionUrlById: By    = By.id("redirectionUrl")
+  private val affinityGroupById: By     = By.id("affinityGroupSelect")
+  private val authSubmitById: By        = By.id("submit-top")
+  private val presetDropDownById: By    = By.id("presets-dropdown")
+  private val presetSubmitById: By      = By.id("add-preset")
+  private val identifierCTField: By     = By.id("input-4-0-value")
+  private val redirectUrl: String       = TestConfiguration.url("crs-fatca-registration-frontend")
+  private val identifierCTValue: String = generateUtr(validCtUtr)
 
-  private val redirectionUrlById: By = By.id("redirectionUrl")
-  private val affinityGroupById: By  = By.id("affinityGroupSelect")
-  private val authSubmitById: By     = By.id("submit-top")
-  private val presetDropDownById: By = By.id("presets-dropdown")
-  private val presetSubmitById: By   = By.id("add-preset")
-  private val identifierCTField: By  = By.id("input-4-0-value")
-  private val identifierCTValue      = generateUtr(ctutr)
-
-  def loadPage: this.type = {
+  private def loadPage: this.type = {
     navigateTo(pageUrl)
     onPage(pageUrl)
     this
   }
 
-  def selectAffinityGroup(affinityGroup: String): Unit =
+  private def selectAffinityGroup(affinityGroup: String): Unit =
     selectDropdownById(affinityGroupById).selectByVisibleText(affinityGroup)
 
-  private def selectPresetAsCT(presetType: String): Unit =
-    selectDropdownById(presetDropDownById).selectByVisibleText(presetType)
+  private def addCtPreset(): Unit = {
+    selectDropdownById(presetDropDownById).selectByVisibleText("CT")
+    clickOnById(presetSubmitById)
+    sendTextById(identifierCTField, identifierCTValue)
+  }
 
-  def loginAsNonAutomatchedOrgAdmin(): RegistrationTypePage.type = {
+  private def submitAuthPage(): Unit = clickOnById(authSubmitById)
+
+  private def submitAuthWithoutEnrolment(affinityGroup: String) = {
     loadPage
     sendTextById(redirectionUrlById, redirectUrl)
-    selectAffinityGroup("Organisation")
-    clickOnById(authSubmitById)
+    selectAffinityGroup(affinityGroup)
+    submitAuthPage()
+  }
+
+  private def submitAuthWithCtEnrolment(affinityGroup: String) = {
+    loadPage
+    sendTextById(redirectionUrlById, redirectUrl)
+    selectAffinityGroup(affinityGroup)
+    addCtPreset()
+    submitAuthPage()
+    IsThisYourBusinessPage
+  }
+
+  def loginAsNonAutomatchedOrgAdmin(): RegistrationTypePage.type = {
+    submitAuthWithoutEnrolment("Organisation")
     RegistrationTypePage
   }
 
   def loginAsNonAutomatchedIndAdmin(): RegistrationTypePage.type = {
-    loadPage
-    sendTextById(redirectionUrlById, redirectUrl)
-    selectAffinityGroup("Individual")
-    clickOnById(authSubmitById)
+    submitAuthWithoutEnrolment("Individual")
     RegistrationTypePage
   }
 
   def loginAsAutomatchedOrgAdmin(): IsThisYourBusinessPage.type = {
-    loadPage
-    sendTextById(redirectionUrlById, redirectUrl)
-    selectAffinityGroup("Organisation")
-    selectPresetAsCT("CT")
-    clickOnById(presetSubmitById)
-    sendTextById(identifierCTField, identifierCTValue)
-    clickOnById(authSubmitById)
+    submitAuthWithCtEnrolment("Organisation")
     IsThisYourBusinessPage
   }
 
   def loginAsAutomatchedIndAdmin(): IsThisYourBusinessPage.type = {
-    loadPage
-    sendTextById(redirectionUrlById, redirectUrl)
-    selectAffinityGroup("Individual")
-    selectPresetAsCT("CT")
-    clickOnById(presetSubmitById)
-    sendTextById(identifierCTField, identifierCTValue)
-    clickOnById(authSubmitById)
+    submitAuthWithCtEnrolment("Individual")
     IsThisYourBusinessPage
   }
 

@@ -23,75 +23,97 @@ class OrgRegistrationSpec extends BaseSpec {
 
   Feature("Organisation Registration") {
 
-    Scenario("Organisation with UTR registers for CRS-FATCA as a limited company ", RegistrationTests, ZapTests) {
+    Scenario(
+      "Non-Automatched Organisation affinity with UTR registers as a Ltd Company with two contacts",
+      RegistrationTests,
+      ZapTests
+    ) {
 
-      Given("User logs in as an Organisation")
+      Given("the user logs in as a non-automatched Organisation")
       AuthLoginPage.loginAsNonAutomatchedOrgAdmin()
-      When("The user makes their way through the journey")
+      When("The user enters information to achieve a match on their organisation's data")
       RegistrationTypePage.registerAs("Limited Company")
       RegisteredAddressInUkPage.registeredAddressInUkYes()
-      UtrPage.enterValidUtr(generateUtr(ctutr))
-      BusinessNamePage.enterBusinessName("CRSFATCA company")
-      IsThisYourBusinessPage.confirmMatchedBusiness()
+      UtrPage.enterUtr(validCtUtr)
+      BusinessNamePage.enterBusinessNameMatched()
+      IsThisYourBusinessPage.matchedBusinessYes()
+      And("They add the details of two contacts")
       AddContact
         .continueSettingYourContact()
         .addFirstContact()
-        .confirmSecondContactAvailabilityYes()
+        .haveSecondContactYes()
         .addSecondContact()
-      CheckYourAnswerPage.confirmAndSendOnCYAPage()
+      And("They submit their registration")
+      CheckYourAnswerPage.confirmAndSend()
+      Then("They should land on the Registration Confirmation Page")
       ConfirmRegistrationPage.checkPage()
     }
 
-    Scenario("Auto-matched Organisation with CT enrolment registers for CRS-FATCA", RegistrationTests, ZapTests) {
+    Scenario(
+      "Auto-matched Organisation affinity with CT enrolment registers with one contact",
+      RegistrationTests,
+      ZapTests
+    ) {
 
-      Given("User logs in as an Organisation")
+      Given("the user logs in as an auto-matched Organisation")
       AuthLoginPage.loginAsAutomatchedOrgAdmin()
-      When("The user makes their way through the journey")
-      IsThisYourBusinessPage.confirmMatchedBusiness()
+      When("The user confirms their matched organisation's information")
+      IsThisYourBusinessPage.matchedBusinessYes()
+      And("They add the details of one contact")
       AddContact
         .continueSettingYourContact()
         .addFirstContact()
-        .confirmSecondContactAvailabilityYes()
-        .addSecondContact()
-      CheckYourAnswerPage.confirmAndSendOnCYAPage()
+        .haveSecondContactNo()
+      And("They submit their registration details")
+      CheckYourAnswerPage.confirmAndSend()
+      Then("They should land on the Registration Confirmation Page")
       ConfirmRegistrationPage.checkPage()
     }
 
-    Scenario("Organisation without UTR registers for CRS-FATCA as a limited company ", RegistrationTests, ZapTests) {
+    Scenario(
+      "Non-Automatched Organisation affinity without UTR registers as a Ltd Company with one contact",
+      RegistrationTests,
+      ZapTests
+    ) {
 
-      Given("User logs in as an Organisation")
+      Given("The user logs in as a non-automatched Organisation")
       AuthLoginPage.loginAsNonAutomatchedOrgAdmin()
-      When("The user makes their way through the journey")
+      When("The user enters information without a UTR to match against")
       RegistrationTypePage.registerAs("Limited Company")
       RegisteredAddressInUkPage.registeredAddressInUkNo()
       HaveUtrPage.haveUTRNo()
-      BusinessNameWithoutIDPage.enterBusinessNameWithoutID()
+      BusinessNameWithoutIDPage.enterBusinessName()
       HaveTradingNamePage.haveTradingNameYes()
       BusinessTradingPage.enterTradingName()
       BusinessAddressWithoutIDNonUKPage.enterAddressNonUK()
+      And("They add the details of one contact")
       AddContact
         .continueSettingYourContact()
         .addFirstContact()
-        .confirmSecondContactAvailabilityYes()
-        .addSecondContact()
-      CheckYourAnswerPage.confirmAndSendOnCYAPage()
+        .haveSecondContactNo()
+      And("They submit their registration details")
+      CheckYourAnswerPage.confirmAndSend()
+      Then("They should land on the Registration Confirmation Page")
       ConfirmRegistrationPage.checkPage()
     }
 
-    Scenario("Organisation with UTR registers for CRS-FATCA as a Sole trader", RegistrationTests, ZapTests) {
+    Scenario("Non-Automatched Organisation with UTR registers as a Sole trader", RegistrationTests, ZapTests) {
 
-      Given("User logs in as an Organisation")
+      Given("The user logs in as a non-automatched Organisation")
       AuthLoginPage.loginAsNonAutomatchedOrgAdmin()
-      When("The user makes their way through the journey")
+      When("The ser enters information to achieve a match on their Sole Trader business' data")
       RegistrationTypePage.registerAs("Sole Trader")
       RegisteredAddressInUkPage.registeredAddressInUkYes()
-      UtrPage.enterValidUtr(generateUtr(ctutr))
-      YourNamePage.enterYourName("sfirstName", "slastName")
-      IsThisYourBusinessPage.confirmMatchedBusiness()
-      IndividualEmailPage.enterIndividualEmail()
-      IndividualHavePhonePage.confirmIndividualHavePhone()
-      IndividualPhonePage.enterIndividualTelephone()
-      CheckYourAnswerPage.confirmAndSendOnCYAPage()
+      UtrPage.enterUtr(validCtUtr)
+      YourNamePage.enterYourName()
+      IsThisYourBusinessPage.matchedBusinessYes()
+      And("They enter their contact details")
+      IndividualEmailPage.enterEmail()
+      IndividualHavePhonePage.havePhoneYes()
+      IndividualPhonePage.enterTelephone()
+      And("They submit their registration details")
+      CheckYourAnswerPage.confirmAndSend()
+      Then("They should land on the Registration Confirmation Page")
       ConfirmRegistrationPage.checkPage()
     }
 
