@@ -60,5 +60,12 @@ class IndividualRegistrationSpec extends BaseSpec {
       ConfirmRegistrationPage.checkPage()
     }
 
+    Scenario("Auto-matched user,login with Individual affinity", RegistrationTests, ZapTests) {
+
+      Given("User logs in as an Individual")
+      AuthLoginPage.loginAsAutomatchedIndAdmin()
+      When("The user makes their way through regular journey")
+      RegistrationTypePage.checkPage()
+    }
   }
 }
