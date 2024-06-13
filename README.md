@@ -27,9 +27,7 @@ Confirm that [ui-test-runner](https://github.com/hmrc/ui-test-runner) is up-to-d
 
 ### Test inspection and debugging
 
-Connect to port `7900` on the Grid browser's local IP address (see `localhost:4444/ui` to view each browser's IP) to 
-inspect and debug test execution in a noVNC window.
-
+The system property `browser.option.headless` is defaulted to `true` in ui-test-runner. To view tests running locally in the browser UI for debugging, set the system property `-Dbrowser.option.headless=false` in the sbt command.
 
 ## Tests
 
