@@ -65,6 +65,5 @@ class IndividualRegistrationSpec extends BaseSpec {
       Then("They should land on the Registration Confirmation Page")
       ConfirmRegistrationPage.checkPage()
     }
-
   }
 }
