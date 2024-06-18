@@ -19,13 +19,13 @@ package uk.gov.hmrc.test.ui.pages
 object IsThisYourBusinessPage extends BasePage {
   override val pageUrl: String = baseUrl + "/is-this-your-business"
 
-  def confirmMatchedBusiness(): Unit = {
+  def matchedBusinessYes(): Unit = {
     onPage(pageUrl)
     clickOnYesRadioButton()
     submitPageById()
   }
 
-  def declineMatchedBusiness(): Unit = {
+  def matchedBusinessNo(): Unit = {
     clickOnNoRadioButton()
     submitPageById()
   }

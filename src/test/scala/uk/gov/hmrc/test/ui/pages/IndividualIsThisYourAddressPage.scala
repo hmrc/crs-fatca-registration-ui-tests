@@ -19,7 +19,7 @@ package uk.gov.hmrc.test.ui.pages
 object IndividualIsThisYourAddressPage extends BasePage {
   override val pageUrl: String = baseUrl + "/without-id/is-this-your-address"
 
-  def confirmMatchedAddress(): Unit = {
+  def matchedAddressYes(): Unit = {
     onPage(pageUrl)
     clickOnYesRadioButton()
     submitPageById()

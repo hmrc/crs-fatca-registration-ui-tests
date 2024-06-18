@@ -21,11 +21,19 @@ import org.openqa.selenium.By
 object BusinessNamePage extends BasePage {
   override val pageUrl: String = baseUrl + "/business-name"
 
-  private val businessNameId = By.id("value")
+  private val businessNameId                 = By.id("value")
+  private val matchedBusinessName: String    = "CRSFATCA company"
+  private val nonMatchedBusinessName: String = "Non Matched business name"
 
-  def enterBusinessName(businessName: String): Unit = {
+  def enterBusinessNameMatched(): Unit = {
     onPage(pageUrl)
-    sendTextById(businessNameId, businessName)
+    sendTextById(businessNameId, matchedBusinessName)
+    submitPageById()
+  }
+
+  def enterBusinessNameNonMatched(): Unit = {
+    onPage(pageUrl)
+    sendTextById(businessNameId, nonMatchedBusinessName)
     submitPageById()
   }
 }

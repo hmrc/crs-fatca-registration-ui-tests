@@ -19,13 +19,13 @@ package uk.gov.hmrc.test.ui.pages
 object IndividualHaveNiNumberPage extends BasePage {
   override val pageUrl: String = baseUrl + "/have-ni-number"
 
-  def confirmIndividualHaveNiNumber(): Unit = {
+  def haveNiNumberYes(): Unit = {
     onPage(pageUrl)
     clickOnYesRadioButton()
     submitPageById()
   }
 
-  def confirmIndividualDoesNotHaveNiNumber(): Unit = {
+  def haveNiNumberNo(): Unit = {
     onPage(pageUrl)
     clickOnNoRadioButton()
     submitPageById()

@@ -31,8 +31,8 @@ class OrgRegistrationProblemSpec extends BaseSpec {
       When("The user makes their way through the journey")
       RegistrationTypePage.registerAs("Limited Company")
       RegisteredAddressInUkPage.registeredAddressInUkYes()
-      UtrPage.enterValidUtr(generateUtr(ctutr))
-      BusinessNamePage.enterBusinessName("Non Matched business name")
+      UtrPage.enterUtr(validCtUtr)
+      BusinessNamePage.enterBusinessNameNonMatched()
       BusinessNotIdentifiedPage.validatePageHeader("The details you entered did not match our records")
     }
 
@@ -43,9 +43,9 @@ class OrgRegistrationProblemSpec extends BaseSpec {
       When("The user makes their way through the journey")
       RegistrationTypePage.registerAs("Limited Company")
       RegisteredAddressInUkPage.registeredAddressInUkYes()
-      UtrPage.enterValidUtr(generateUtr(ctutr))
-      BusinessNamePage.enterBusinessName("CRSFATCA Company")
-      IsThisYourBusinessPage.declineMatchedBusiness()
+      UtrPage.enterUtr(validCtUtr)
+      BusinessNamePage.enterBusinessNameMatched()
+      IsThisYourBusinessPage.matchedBusinessNo()
       BusinessNotIdentifiedPage.validatePageHeader("The details you entered did not match our records")
     }
 
@@ -58,7 +58,7 @@ class OrgRegistrationProblemSpec extends BaseSpec {
       Given("User logs in as an Organisation")
       AuthLoginPage.loginAsAutomatchedOrgAdmin()
       When("The user makes their way through the journey")
-      IsThisYourBusinessPage.declineMatchedBusiness()
+      IsThisYourBusinessPage.matchedBusinessNo()
       DifferentBusinessPage.validatePageHeader("You’re unable to use this service with this Government Gateway user ID")
     }
 
@@ -69,8 +69,8 @@ class OrgRegistrationProblemSpec extends BaseSpec {
       When("The user makes their way through the journey")
       RegistrationTypePage.registerAs("Limited Company")
       RegisteredAddressInUkPage.registeredAddressInUkYes()
-      UtrPage.enterValidUtr(generateUtr(preRegUtr))
-      BusinessNamePage.enterBusinessName("CRSFATCA company")
+      UtrPage.enterUtr(preRegUtr)
+      BusinessNamePage.enterBusinessNameMatched()
       OrganisationWithUtrPreRegistered.validatePageHeader("Your organisation is already registered to use this service")
     }
 
@@ -78,11 +78,11 @@ class OrgRegistrationProblemSpec extends BaseSpec {
       Given("User logs in as an Organisation")
       AuthLoginPage.loginAsAutomatchedOrgAdmin()
       When("The user makes their way through the journey")
-      IsThisYourBusinessPage.confirmMatchedBusiness()
+      IsThisYourBusinessPage.matchedBusinessYes()
       AddContact
         .continueSettingYourContact()
         .addFirstContact()
-        .confirmSecondContactAvailabilityNo()
+        .haveSecondContactNo()
       CheckYourAnswerPage.validatePageHeader("Check your answers before you register for CRS and FATCA")
       //Commenting below code to figure out id for change button on CYA
       //CheckYourAnswerPage.clickOnChangeYourBusinessAddress()

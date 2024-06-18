@@ -19,7 +19,7 @@ package uk.gov.hmrc.test.ui.pages
 object IndividualHavePhonePage extends BasePage {
   override val pageUrl: String = baseUrl + "/individual-have-phone"
 
-  def confirmIndividualHavePhone(): Unit = {
+  def havePhoneYes(): Unit = {
     onPage(pageUrl)
     clickOnYesRadioButton()
     submitPageById()

@@ -21,13 +21,15 @@ import org.openqa.selenium.By
 object IndividualWithoutIdNamePage extends BasePage {
   override val pageUrl: String = baseUrl + "/without-id/name"
 
-  private val firstNameId = By.id("firstName")
-  private val lastNameId  = By.id("lastName")
+  private val firstNameId: By        = By.id("firstName")
+  private val lastNameId: By         = By.id("lastName")
+  private val firstNameValue: String = "firstName"
+  private val lastNameValue: String  = "lastName"
 
-  def enterName(firstName: String, lastName: String): Unit = {
+  def enterName(): Unit = {
     onPage(pageUrl)
-    sendTextById(firstNameId, firstName)
-    sendTextById(lastNameId, lastName)
+    sendTextById(firstNameId, firstNameValue)
+    sendTextById(lastNameId, lastNameValue)
     submitPageById()
   }
 }
