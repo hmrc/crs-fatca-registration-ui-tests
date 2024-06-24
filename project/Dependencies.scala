@@ -7,7 +7,7 @@ object Dependencies {
     "com.vladsch.flexmark" % "flexmark-all"    % "0.64.8" % Test,
     "org.scalatest"       %% "scalatest"       % "3.2.18" % Test,
     "uk.gov.hmrc"         %% "ui-test-runner"  % "0.31.0" % Test,
-    "uk.gov.hmrc"         %% "domain-play-30"  % "9.0.0"  % Test
+    "uk.gov.hmrc"         %% "domain-play-30"  % "10.0.0"  % Test
   )
 
 }
