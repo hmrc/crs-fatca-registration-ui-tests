@@ -18,7 +18,7 @@ package uk.gov.hmrc.test.ui.pages
 
 object BusinessNotIdentifiedPage extends BasePage {
 
-  override val pageUrl: String = baseUrl + "/business-not-identified"
+  override val pageUrl: String = baseUrl + "/problem/business-not-identified"
 
   def validatePageHeader(pageHeader: String): Unit = {
     onPage(pageUrl)
