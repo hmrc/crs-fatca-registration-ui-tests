@@ -72,4 +72,11 @@ trait BasePage extends BrowserDriver with Matchers with IdGenerators {
 
   def checkH1(h1: String): Assertion = driver.findElement(pageHeader).getText should include(h1)
 
+  def clickOnLinkByHrefPageName(pageName: String): Unit =
+    driver.findElement(By.cssSelector("a[href$="+s"$pageName]")).click()
+
+  def clickBackLink(pageUrl: String): Unit = {
+    onPage(pageUrl)
+    driver.findElement(By.linkText("Back")).click()
+  }
 }
