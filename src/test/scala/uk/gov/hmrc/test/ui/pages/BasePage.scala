@@ -36,6 +36,7 @@ trait BasePage extends BrowserDriver with Matchers with IdGenerators {
   private val countryDropdown: By = By.id("country")
   private val countryOption: By   = By.id("country__option--0")
   private val pageHeader: By      = By.tagName("h1")
+  private val backLinkText: By    = By.linkText("Back")
 
   def navigateTo(url: String): Unit =
     driver.navigate().to(url)
@@ -72,11 +73,11 @@ trait BasePage extends BrowserDriver with Matchers with IdGenerators {
 
   def checkH1(h1: String): Assertion = driver.findElement(pageHeader).getText should include(h1)
 
-  def clickOnLinkByHrefPageName(pageName: String): Unit =
-    driver.findElement(By.cssSelector("a[href$="+s"$pageName]")).click()
-
-  def clickBackLink(pageUrl: String): Unit = {
+  def clickOnBackLink(pageUrl: String): Unit = {
     onPage(pageUrl)
-    driver.findElement(By.linkText("Back")).click()
+    driver.findElement(backLinkText).click()
   }
+
+  def clickOnByPartialLinkText(partialLinkText: By): Unit =
+    driver.findElement(partialLinkText).click()
 }
