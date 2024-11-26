@@ -19,8 +19,9 @@ package uk.gov.hmrc.test.ui.pages
 import org.openqa.selenium.By
 
 object AddContact extends BasePage {
-  override val pageUrl: String = baseUrl
-  private val textInputField   = By.id("value")
+  override val pageUrl: String       = baseUrl
+  private val textInputField         = By.id("value")
+  val changeHavePhonePageUrl: String = baseUrl + "/change-have-phone"
 
   def continueSettingYourContact(): this.type = {
     onPage(baseUrl + "/your-contact-details")
