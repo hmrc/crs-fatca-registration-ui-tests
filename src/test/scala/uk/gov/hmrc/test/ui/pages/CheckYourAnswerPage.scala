@@ -23,7 +23,6 @@ object CheckYourAnswerPage extends BasePage {
   private val changeYourBusinessLinkId: By = By.id("business-with-i-d-name")
   val changeHavePhonePartialLinkText: By   = By.partialLinkText("Change first contact telephone number")
 
-
   def confirmAndSend(): Unit = {
     onPage(pageUrl)
     submitPageById()
