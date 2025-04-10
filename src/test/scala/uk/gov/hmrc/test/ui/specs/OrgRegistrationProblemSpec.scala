@@ -24,14 +24,14 @@ class OrgRegistrationProblemSpec extends BaseSpec {
 
   Feature("Organisation Registration Problem Page Validation") {
 
-    Scenario("Organisation with Non-Matched business name - business-not-identified", RegistrationTests, ZapTests) {
+    Scenario("Organisation with Non-Matched ID - business-not-identified", RegistrationTests, ZapTests) {
 
       Given("User logs in as an Organisation")
       AuthLoginPage.loginAsNonAutomatchedOrgAdmin()
       When("The user makes their way through the journey")
       RegistrationTypePage.registerAs("Limited Company")
       RegisteredAddressInUkPage.registeredAddressInUkYes()
-      UtrPage.enterUtr(validCtUtr)
+      UtrPage.enterUtr(NonMatchingCtUtr)
       BusinessNamePage.enterBusinessNameNonMatched()
       BusinessNotIdentifiedPage.validatePageHeader("The details you entered did not match our records")
     }
