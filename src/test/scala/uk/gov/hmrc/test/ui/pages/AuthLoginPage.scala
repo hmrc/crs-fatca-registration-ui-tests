@@ -29,7 +29,7 @@ object AuthLoginPage extends BasePage {
   private val presetSubmitById: By      = By.id("add-preset")
   private val identifierCTField: By     = By.id("input-4-0-value")
   private val redirectUrl: String       = TestConfiguration.url("crs-fatca-registration-frontend")
-  private val identifierCTValue: String = generateUtr(validCtUtr)
+  private val identifierCTValue: String = generateUtr(automatchedCtUtr)
 
   private def loadPage: this.type = {
     navigateTo(pageUrl)

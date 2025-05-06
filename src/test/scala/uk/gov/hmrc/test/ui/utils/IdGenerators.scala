@@ -25,6 +25,7 @@ trait IdGenerators {
 
   //prefixes
   val validCtUtr: String       = "111"
+  val automatchedCtUtr: String = "333"
   val NonMatchingCtUtr: String = "555"
   val preRegUtr: String        = "222"
   val individualNino: String   = "AA1"
