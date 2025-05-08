@@ -107,7 +107,7 @@ class OrgRegistrationSpec extends BaseSpec {
       When("The ser enters information to achieve a match on their Sole Trader business' data")
       RegistrationTypePage.registerAs("Sole Trader")
       RegisteredAddressInUkPage.registeredAddressInUkYes()
-      UtrPage.enterUtr(validCtUtr)
+      UtrPage.enterUtr(validStUtr)
       YourNamePage.enterYourName()
       IsThisYourBusinessPage.matchedBusinessYes()
       And("They enter their contact details")
