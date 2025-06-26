@@ -29,12 +29,12 @@ object BusinessAddressWithoutIDNonUKPage extends BasePage {
   private val postcode     = By.id("postCode")
 
   def enterAddressNonUK(): Unit = {
-    onPage(pageUrl)
-    sendTextById(addressLine1, "17 Beechfield Manor")
-    sendTextById(addressLine2, "Aghalee")
-    sendTextById(city, "Paris")
-    sendTextById(region, "North")
-    sendTextById(postcode, "NE13 2XH")
+    onPage()
+    sendTextById(addressLine1, "42 Test Street")
+    sendTextById(addressLine2, "Test Town")
+    sendTextById(city, "Test City")
+    sendTextById(region, "Test Region")
+    sendTextById(postcode, "TE57 1PC")
     countryAutoSelect("Albania")
     submitPageById()
   }

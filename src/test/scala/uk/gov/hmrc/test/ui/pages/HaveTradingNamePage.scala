@@ -20,7 +20,7 @@ object HaveTradingNamePage extends BasePage {
   override val pageUrl: String = baseUrl + "/without-id/have-trading-name"
 
   def haveTradingNameYes(): Unit = {
-    onPage(pageUrl)
+    onPage()
     clickOnYesRadioButton()
     submitPageById()
   }

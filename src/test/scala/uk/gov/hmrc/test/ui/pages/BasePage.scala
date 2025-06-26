@@ -41,7 +41,7 @@ trait BasePage extends BrowserDriver with Matchers with IdGenerators {
   def navigateTo(url: String): Unit =
     driver.navigate().to(url)
 
-  def onPage(url: String): Unit =
+  def onPage(url: String = this.pageUrl): Unit =
     if (driver.getCurrentUrl != url)
       throw PageNotFoundException(
         s"Expected '$url' page, but found '${driver.getCurrentUrl}' page."
@@ -65,6 +65,11 @@ trait BasePage extends BrowserDriver with Matchers with IdGenerators {
   def submitPageById(): Unit =
     driver.findElement(submitButtonId).click()
 
+  def submitOnPageById(): Unit = {
+    onPage()
+    driver.findElement(submitButtonId).click()
+  }
+
   def clickOnYesRadioButton(): Unit =
     clickOnById(yesRadioId)
 
@@ -73,11 +78,13 @@ trait BasePage extends BrowserDriver with Matchers with IdGenerators {
 
   def checkH1(h1: String): Assertion = driver.findElement(pageHeader).getText should include(h1)
 
-  def clickOnBackLink(pageUrl: String): Unit = {
-    onPage(pageUrl)
+  def clickOnBackLink(): Unit = {
+    onPage()
     driver.findElement(backLinkText).click()
   }
 
-  def clickOnByPartialLinkText(partialLinkText: By): Unit =
+  def clickOnByPartialLinkText(partialLinkText: By): Unit = {
+    onPage()
     driver.findElement(partialLinkText).click()
+  }
 }

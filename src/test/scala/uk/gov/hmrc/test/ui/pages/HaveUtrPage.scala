@@ -21,7 +21,7 @@ object HaveUtrPage extends BasePage {
   override val pageUrl: String = baseUrl + "/have-utr"
 
   def haveUTRNo(): Unit = {
-    onPage(pageUrl)
+    onPage()
     clickOnNoRadioButton()
     submitPageById()
   }

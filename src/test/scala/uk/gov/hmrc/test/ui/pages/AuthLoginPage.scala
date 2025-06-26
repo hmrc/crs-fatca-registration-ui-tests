@@ -33,7 +33,7 @@ object AuthLoginPage extends BasePage {
 
   private def loadPage: this.type = {
     navigateTo(pageUrl)
-    onPage(pageUrl)
+    onPage()
     this
   }
 

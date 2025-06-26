@@ -26,7 +26,7 @@ object IndividualWithoutIdDOBPage extends BasePage {
   private val yearId  = By.id("value.year")
 
   def enterDOB(): Unit = {
-    onPage(pageUrl)
+    onPage()
     sendTextById(dayId, "01")
     sendTextById(monthId, "02")
     sendTextById(yearId, "1990")

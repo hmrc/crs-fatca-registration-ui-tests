@@ -29,7 +29,7 @@ object RegistrationTypePage extends BasePage {
   private val individualRadioId     = By.id("value_5")
 
   def registerAs(registrationType: String): Unit = {
-    onPage(pageUrl)
+    onPage()
     clickOnById(registrationType match {
       case "Limited Company"                           => limitedCompanyRadioId
       case "Partnership"                               => partnershipRadioId
@@ -40,7 +40,4 @@ object RegistrationTypePage extends BasePage {
     })
     submitPageById()
   }
-
-  def checkPage(): Unit =
-    onPage(pageUrl)
 }

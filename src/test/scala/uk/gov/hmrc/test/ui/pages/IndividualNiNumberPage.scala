@@ -23,7 +23,7 @@ object IndividualNiNumberPage extends BasePage {
   private val textInputField   = By.id("ni-number")
 
   def enterNiNumber(ninoPrefix: String): Unit = {
-    onPage(pageUrl)
+    onPage()
     sendTextById(textInputField, generateNino(ninoPrefix))
     submitPageById()
   }

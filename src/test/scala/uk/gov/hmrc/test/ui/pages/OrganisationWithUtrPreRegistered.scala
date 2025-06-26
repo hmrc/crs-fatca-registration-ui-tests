@@ -18,10 +18,10 @@ package uk.gov.hmrc.test.ui.pages
 
 object OrganisationWithUtrPreRegistered extends BasePage {
 
-  override val pageUrl: String = baseUrl + "/problem/organisation-with-utr-pre-registered"
+  override val pageUrl: String = baseUrl + "/problem/organisation-already-registered"
 
   def validatePageHeader(pageHeader: String): Unit = {
-    onPage(pageUrl)
+    onPage()
     checkH1(pageHeader)
   }
 

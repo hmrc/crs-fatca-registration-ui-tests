@@ -21,7 +21,7 @@ object IdentityConfirmedPage extends BasePage {
   override val pageUrl: String = baseUrl + "/identity-confirmed"
 
   def continue(): Unit = {
-    onPage(pageUrl)
+    onPage()
     submitPageById()
   }
 

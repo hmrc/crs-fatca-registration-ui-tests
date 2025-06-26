@@ -25,7 +25,7 @@ object UtrPage extends BasePage {
   private val utrId = By.id("value")
 
   def enterUtr(utrPrefix: String): Unit = {
-    onPage(pageUrl)
+    onPage()
     sendTextById(utrId, generateUtr(utrPrefix))
     submitPageById()
   }

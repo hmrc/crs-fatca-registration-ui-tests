@@ -25,56 +25,62 @@ class OrgRegistrationProblemSpec extends BaseSpec {
   Feature("Organisation Registration Problem Page Validation") {
 
     Scenario("Organisation with Non-Matched ID - business-not-identified", RegistrationTests, ZapTests) {
-
       Given("User logs in as an Organisation")
       AuthLoginPage.loginAsNonAutomatchedOrgAdmin()
       When("The user makes their way through the journey")
       RegistrationTypePage.registerAs("Limited Company")
       RegisteredAddressInUkPage.registeredAddressInUkYes()
       UtrPage.enterUtr(NonMatchingCtUtr)
-      BusinessNamePage.enterBusinessNameNonMatched()
+      BusinessNamePage.enterBusinessName("non matched")
       BusinessNotIdentifiedPage.validatePageHeader("The details you entered did not match our records")
     }
 
     Scenario("Organisation with Non-Matched business Address - business-not-identified", RegistrationTests, ZapTests) {
-
       Given("User logs in as an Organisation")
       AuthLoginPage.loginAsNonAutomatchedOrgAdmin()
       When("The user makes their way through the journey")
       RegistrationTypePage.registerAs("Limited Company")
       RegisteredAddressInUkPage.registeredAddressInUkYes()
-      UtrPage.enterUtr(validCtUtr)
-      BusinessNamePage.enterBusinessNameMatched()
+      UtrPage.enterUtr(matchingCtUtr)
+      BusinessNamePage.enterBusinessName("matched")
       IsThisYourBusinessPage.matchedBusinessNo()
       BusinessNotIdentifiedPage.validatePageHeader("The details you entered did not match our records")
     }
 
     Scenario(
-      "Auto Matched Organisation with Non-Matched business Address - Different Business",
+      "CT Auto-matched Org with Non-Matched business Address - Different Business",
       RegistrationTests,
       ZapTests
     ) {
-
       Given("User logs in as an Organisation")
       AuthLoginPage.loginAsAutomatchedOrgAdmin()
       When("The user makes their way through the journey")
       IsThisYourBusinessPage.matchedBusinessNo()
       DifferentBusinessPage.validatePageHeader("You’re unable to use this service with this Government Gateway user ID")
     }
-// This test is not working after DAC6-3508 changes , will review again after design changes
-//    Scenario("Organisation with UTR Pre registered", RegistrationTests, ZapTests) {
-//
-//      Given("User logs in as an Organisation")
-//      AuthLoginPage.loginAsNonAutomatchedOrgAdmin()
-//      When("The user makes their way through the journey")
-//      RegistrationTypePage.registerAs("Limited Company")
-//      RegisteredAddressInUkPage.registeredAddressInUkYes()
-//      UtrPage.enterUtr(preRegUtr)
-//      BusinessNamePage.enterBusinessNameMatched()
-//      OrganisationWithUtrPreRegistered.validatePageHeader("Your organisation is already registered to use this service")
-//    }
 
-    Scenario("Auto-matched Organisation with CT enrolment - Unable to change business", RegistrationTests, ZapTests) {
+    Scenario("Organisation with UTR Pre registered", RegistrationTests, ZapTests) {
+
+      Given("User logs in as an Organisation")
+      AuthLoginPage.loginAsNonAutomatchedOrgAdmin()
+      When("The user makes their way through the journey")
+      RegistrationTypePage.registerAs("Limited Company")
+      RegisteredAddressInUkPage.registeredAddressInUkYes()
+      UtrPage.enterUtr(alreadyRegCtUtr)
+      BusinessNamePage.enterBusinessName("already registered")
+      IsThisYourBusinessPage.matchedBusinessYes()
+      And("They add the details of one contact")
+      AddContact
+        .continueSettingYourContact()
+        .addFirstContact()
+        .haveSecondContactNo()
+      And("They submit their registration")
+      CheckYourAnswerPage.confirmAndSend()
+      Then("They should land on the Organisation Already Registered page")
+      OrganisationWithUtrPreRegistered.onPage()
+    }
+
+    Scenario("CT Auto-matched Organisation - Unable to change business", RegistrationTests, ZapTests, SoloTests) {
       Given("User logs in as an Organisation")
       AuthLoginPage.loginAsAutomatchedOrgAdmin()
       When("The user makes their way through the journey")
@@ -84,9 +90,8 @@ class OrgRegistrationProblemSpec extends BaseSpec {
         .addFirstContact()
         .haveSecondContactNo()
       CheckYourAnswerPage.validatePageHeader("Check your answers before you register for CRS and FATCA")
-      //Commenting below code to figure out id for change button on CYA
-      //CheckYourAnswerPage.clickOnChangeYourBusinessAddress()
-      //UnableToChangeBusinessPage.validatePageHeader("You’re unable to change your business details")
+      CheckYourAnswerPage.clickOnByPartialLinkText(CheckYourAnswerPage.changeYourBusinessPartialLinkText)
+      UnableToChangeBusinessPage.validatePageHeader("You’re unable to change your business details")
     }
   }
 }

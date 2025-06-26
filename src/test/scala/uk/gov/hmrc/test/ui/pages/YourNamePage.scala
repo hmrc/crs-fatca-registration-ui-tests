@@ -27,7 +27,7 @@ object YourNamePage extends BasePage {
   private val StLastNameValue: String  = "slastName"
 
   def enterYourName(): Unit = {
-    onPage(pageUrl)
+    onPage()
     sendTextById(firstNameId, StFirstNameValue)
     sendTextById(lastNameId, StLastNameValue)
     submitPageById()
