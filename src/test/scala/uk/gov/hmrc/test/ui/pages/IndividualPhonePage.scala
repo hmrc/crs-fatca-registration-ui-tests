@@ -23,8 +23,8 @@ object IndividualPhonePage extends BasePage {
   private val textInputField   = By.id("value")
 
   def enterTelephone(): Unit = {
-    onPage(pageUrl)
-    sendTextById(textInputField, "01642 123456")
+    onPage()
+    sendTextById(textInputField, "0191 498 0123")
     submitPageById()
   }
 

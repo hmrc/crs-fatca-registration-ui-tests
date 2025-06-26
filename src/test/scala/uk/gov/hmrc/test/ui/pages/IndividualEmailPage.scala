@@ -23,8 +23,8 @@ object IndividualEmailPage extends BasePage {
   private val textInputField   = By.id("value")
 
   def enterEmail(): Unit = {
-    onPage(pageUrl)
-    sendTextById(textInputField, "testIndividualEmail@test.com")
+    onPage()
+    sendTextById(textInputField, "testIndividualEmail@example.com")
     submitPageById()
   }
 

@@ -23,7 +23,7 @@ object BusinessTradingPage extends BasePage {
   private val tradingNameId    = By.id("value")
 
   def enterTradingName(): Unit = {
-    onPage(pageUrl)
+    onPage()
     sendTextById(tradingNameId, "CRSFATCA Trading company")
     submitPageById()
   }

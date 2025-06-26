@@ -34,8 +34,8 @@ class OrgRegistrationSpec extends BaseSpec {
       When("The user enters information to achieve a match on their organisation's data")
       RegistrationTypePage.registerAs("Limited Company")
       RegisteredAddressInUkPage.registeredAddressInUkYes()
-      UtrPage.enterUtr(validCtUtr)
-      BusinessNamePage.enterBusinessNameMatched()
+      UtrPage.enterUtr(matchingCtUtr)
+      BusinessNamePage.enterBusinessName("matched")
       IsThisYourBusinessPage.matchedBusinessYes()
       And("They add the details of two contacts")
       AddContact
@@ -43,9 +43,6 @@ class OrgRegistrationSpec extends BaseSpec {
         .addFirstContact()
         .haveSecondContactYes()
         .addSecondContact()
-      And("They check their telephone answer")
-      CheckYourAnswerPage.clickOnByPartialLinkText(CheckYourAnswerPage.changeHavePhonePartialLinkText)
-      AddContact.clickOnBackLink(AddContact.changeHavePhonePageUrl)
       And("They submit their registration")
       CheckYourAnswerPage.confirmAndSend()
       Then("They should land on the Registration Confirmation Page")
@@ -107,18 +104,20 @@ class OrgRegistrationSpec extends BaseSpec {
       When("The ser enters information to achieve a match on their Sole Trader business' data")
       RegistrationTypePage.registerAs("Sole Trader")
       RegisteredAddressInUkPage.registeredAddressInUkYes()
-      UtrPage.enterUtr(validStUtr)
+      UtrPage.enterUtr(validSaUtr)
       YourNamePage.enterYourName()
       IsThisYourBusinessPage.matchedBusinessYes()
       And("They enter their contact details")
       IndividualEmailPage.enterEmail()
       IndividualHavePhonePage.havePhoneYes()
       IndividualPhonePage.enterTelephone()
+      And("They review their telephone answer with a back link")
+      CheckYourAnswerPage.clickOnBackLink()
+      IndividualPhonePage.submitOnPageById()
       And("They submit their registration details")
       CheckYourAnswerPage.confirmAndSend()
       Then("They should land on the Registration Confirmation Page")
       ConfirmRegistrationPage.checkPage()
     }
-
   }
 }

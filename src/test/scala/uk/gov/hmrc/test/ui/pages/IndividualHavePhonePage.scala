@@ -20,7 +20,7 @@ object IndividualHavePhonePage extends BasePage {
   override val pageUrl: String = baseUrl + "/individual-have-phone"
 
   def havePhoneYes(): Unit = {
-    onPage(pageUrl)
+    onPage()
     clickOnYesRadioButton()
     submitPageById()
   }

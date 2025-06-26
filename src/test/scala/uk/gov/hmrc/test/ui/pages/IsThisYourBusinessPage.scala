@@ -20,7 +20,7 @@ object IsThisYourBusinessPage extends BasePage {
   override val pageUrl: String = baseUrl + "/is-this-your-business"
 
   def matchedBusinessYes(): Unit = {
-    onPage(pageUrl)
+    onPage()
     clickOnYesRadioButton()
     submitPageById()
   }

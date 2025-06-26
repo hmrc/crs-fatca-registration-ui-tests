@@ -23,7 +23,7 @@ object IndividualUkPostcodePage extends BasePage {
   private val textInputField   = By.id("postCode")
 
   def enterUkPostcode(): Unit = {
-    onPage(pageUrl)
+    onPage()
     sendTextById(textInputField, "ZZ1Z 7AB")
     submitPageById()
   }

@@ -25,13 +25,13 @@ object RegisteredAddressInUkPage extends BasePage {
   private val noRadioId  = By.id("value-no")
 
   def registeredAddressInUkYes(): Unit = {
-    onPage(pageUrl)
+    onPage()
     clickOnById(yesRadioId)
     submitPageById()
   }
 
   def registeredAddressInUkNo(): Unit = {
-    onPage(pageUrl)
+    onPage()
     clickOnById(noRadioId)
     submitPageById()
   }

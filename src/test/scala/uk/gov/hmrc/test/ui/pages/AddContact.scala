@@ -19,9 +19,8 @@ package uk.gov.hmrc.test.ui.pages
 import org.openqa.selenium.By
 
 object AddContact extends BasePage {
-  override val pageUrl: String       = baseUrl
-  private val textInputField         = By.id("value")
-  val changeHavePhonePageUrl: String = baseUrl + "/change-have-phone"
+  override val pageUrl: String = baseUrl
+  private val textInputField   = By.id("value")
 
   def continueSettingYourContact(): this.type = {
     onPage(baseUrl + "/your-contact-details")
@@ -37,7 +36,7 @@ object AddContact extends BasePage {
 
   def enterFirstContactEmail(): Unit = {
     onPage(baseUrl + "/email")
-    sendTextById(textInputField, "testFirstContactName@test.com")
+    sendTextById(textInputField, "testFirstContactName@example.com")
     submitPageById()
   }
 
@@ -49,7 +48,7 @@ object AddContact extends BasePage {
 
   def enterFirstContactPhone(): Unit = {
     onPage(baseUrl + "/phone")
-    sendTextById(textInputField, "01642 123456")
+    sendTextById(textInputField, "0191 498 0000")
     submitPageById()
   }
 
@@ -74,7 +73,7 @@ object AddContact extends BasePage {
 
   def enterSecondContactEmail(): Unit = {
     onPage(baseUrl + "/second-contact-email")
-    sendTextById(textInputField, "testSecondContactName@test.com")
+    sendTextById(textInputField, "testSecondContactName@example.com")
     submitPageById()
   }
 
@@ -86,7 +85,7 @@ object AddContact extends BasePage {
 
   def enterSecondContactPhone(): Unit = {
     onPage(baseUrl + "/second-contact-phone")
-    sendTextById(textInputField, "01642 123456")
+    sendTextById(textInputField, "0191 498 0999")
     submitPageById()
   }
 

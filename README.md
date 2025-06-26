@@ -14,7 +14,7 @@ docker run --rm -d -p 27017:27017 --name mongo percona/percona-server-mongodb:5.
 Start `crs-fatca-registration-frontend` services as follows:
 
 ```bash
-sm2 --start CRS_FATCA_ALL
+sm2 --start CRS_FATCA_REG_TEST
 ```
 Starting a large group of services in a profile can overload the cpu of a machine and lead to services failing to start.
 If this happens use one, or a combination of the following arguments: `--delay-seconds 5` to include a delay of 5 

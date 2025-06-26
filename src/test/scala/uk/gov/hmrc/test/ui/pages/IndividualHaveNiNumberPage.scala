@@ -20,13 +20,13 @@ object IndividualHaveNiNumberPage extends BasePage {
   override val pageUrl: String = baseUrl + "/have-ni-number"
 
   def haveNiNumberYes(): Unit = {
-    onPage(pageUrl)
+    onPage()
     clickOnYesRadioButton()
     submitPageById()
   }
 
   def haveNiNumberNo(): Unit = {
-    onPage(pageUrl)
+    onPage()
     clickOnNoRadioButton()
     submitPageById()
   }

@@ -20,7 +20,7 @@ object IndividualIsThisYourAddressPage extends BasePage {
   override val pageUrl: String = baseUrl + "/without-id/is-this-your-address"
 
   def matchedAddressYes(): Unit = {
-    onPage(pageUrl)
+    onPage()
     clickOnYesRadioButton()
     submitPageById()
   }
