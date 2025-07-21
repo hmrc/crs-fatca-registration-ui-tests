@@ -21,14 +21,14 @@ object IndividualHaveNiNumberPage extends BasePage {
 
   def haveNiNumberYes(): Unit = {
     onPage()
-    clickOnYesRadioButton()
-    submitPageById()
+    click(yesRadioId)
+    click(submitButtonId)
   }
 
   def haveNiNumberNo(): Unit = {
     onPage()
-    clickOnNoRadioButton()
-    submitPageById()
+    click(noRadioId)
+    click(submitButtonId)
   }
 
 }

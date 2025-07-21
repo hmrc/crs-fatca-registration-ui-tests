@@ -46,7 +46,7 @@ class OrgRegistrationSpec extends BaseSpec {
       And("They submit their registration")
       CheckYourAnswerPage.confirmAndSend()
       Then("They should land on the Registration Confirmation Page")
-      ConfirmRegistrationPage.checkPage()
+      ConfirmRegistrationPage.onPage()
     }
 
     Scenario(
@@ -67,7 +67,7 @@ class OrgRegistrationSpec extends BaseSpec {
       And("They submit their registration details")
       CheckYourAnswerPage.confirmAndSend()
       Then("They should land on the Registration Confirmation Page")
-      ConfirmRegistrationPage.checkPage()
+      ConfirmRegistrationPage.onPage()
     }
 
     Scenario(
@@ -94,7 +94,7 @@ class OrgRegistrationSpec extends BaseSpec {
       And("They submit their registration details")
       CheckYourAnswerPage.confirmAndSend()
       Then("They should land on the Registration Confirmation Page")
-      ConfirmRegistrationPage.checkPage()
+      ConfirmRegistrationPage.onPage()
     }
 
     Scenario("Non-Automatched Organisation with UTR registers as a Sole trader", RegistrationTests, ZapTests) {
@@ -113,11 +113,11 @@ class OrgRegistrationSpec extends BaseSpec {
       IndividualPhonePage.enterTelephone()
       And("They review their telephone answer with a back link")
       CheckYourAnswerPage.clickOnBackLink()
-      IndividualPhonePage.submitOnPageById()
+      IndividualPhonePage.onPageSubmitById()
       And("They submit their registration details")
       CheckYourAnswerPage.confirmAndSend()
       Then("They should land on the Registration Confirmation Page")
-      ConfirmRegistrationPage.checkPage()
+      ConfirmRegistrationPage.onPage()
     }
   }
 }

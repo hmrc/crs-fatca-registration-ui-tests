@@ -30,13 +30,13 @@ object BusinessAddressWithoutIDNonUKPage extends BasePage {
 
   def enterAddressNonUK(): Unit = {
     onPage()
-    sendTextById(addressLine1, "42 Test Street")
-    sendTextById(addressLine2, "Test Town")
-    sendTextById(city, "Test City")
-    sendTextById(region, "Test Region")
-    sendTextById(postcode, "TE57 1PC")
+    sendKeys(addressLine1, "42 Test Street")
+    sendKeys(addressLine2, "Test Town")
+    sendKeys(city, "Test City")
+    sendKeys(region, "Test Region")
+    sendKeys(postcode, "TE57 1PC")
     countryAutoSelect("Albania")
-    submitPageById()
+    click(submitButtonId)
   }
 
 }

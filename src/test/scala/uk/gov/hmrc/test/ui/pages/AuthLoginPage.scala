@@ -42,22 +42,22 @@ object AuthLoginPage extends BasePage {
 
   private def addCtPreset(): Unit = {
     selectDropdownById(presetDropDownById).selectByVisibleText("CT")
-    clickOnById(presetSubmitById)
-    sendTextById(identifierCTField, identifierCTValue)
+    click(presetSubmitById)
+    sendKeys(identifierCTField, identifierCTValue)
   }
 
-  private def submitAuthPage(): Unit = clickOnById(authSubmitById)
+  private def submitAuthPage(): Unit = click(authSubmitById)
 
   private def submitAuthWithoutEnrolment(affinityGroup: String) = {
     loadPage
-    sendTextById(redirectionUrlById, redirectUrl)
+    sendKeys(redirectionUrlById, redirectUrl)
     selectAffinityGroup(affinityGroup)
     submitAuthPage()
   }
 
   private def submitAuthWithCtEnrolment(affinityGroup: String) = {
     loadPage
-    sendTextById(redirectionUrlById, redirectUrl)
+    sendKeys(redirectionUrlById, redirectUrl)
     selectAffinityGroup(affinityGroup)
     addCtPreset()
     submitAuthPage()

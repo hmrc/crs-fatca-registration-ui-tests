@@ -22,7 +22,7 @@ object HaveUtrPage extends BasePage {
 
   def haveUTRNo(): Unit = {
     onPage()
-    clickOnNoRadioButton()
-    submitPageById()
+    click(noRadioId)
+    click(submitButtonId)
   }
 }

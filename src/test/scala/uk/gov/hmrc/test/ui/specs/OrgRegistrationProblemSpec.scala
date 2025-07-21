@@ -19,7 +19,7 @@ package uk.gov.hmrc.test.ui.specs
 import uk.gov.hmrc.test.ui.pages._
 import uk.gov.hmrc.test.ui.specs.tags._
 
-//TODO Remove this file post discussion with Dev Team , if it is covered as part of unit test
+//TODO Remove this file post discussion with Dev Team, if it is covered as part of unit test
 class OrgRegistrationProblemSpec extends BaseSpec {
 
   Feature("Organisation Registration Problem Page Validation") {
@@ -30,9 +30,11 @@ class OrgRegistrationProblemSpec extends BaseSpec {
       When("The user makes their way through the journey")
       RegistrationTypePage.registerAs("Limited Company")
       RegisteredAddressInUkPage.registeredAddressInUkYes()
-      UtrPage.enterUtr(NonMatchingCtUtr)
+      UtrPage.enterUtr(matchingCtUtr)
+      And("They enter a business name that does not match the UTR they gave")
       BusinessNamePage.enterBusinessName("non matched")
-      BusinessNotIdentifiedPage.validatePageHeader("The details you entered did not match our records")
+      Then("The user should land on the 'Business not identified' page")
+      BusinessNotIdentifiedPage.onPage()
     }
 
     Scenario("Organisation with Non-Matched business Address - business-not-identified", RegistrationTests, ZapTests) {
@@ -43,8 +45,10 @@ class OrgRegistrationProblemSpec extends BaseSpec {
       RegisteredAddressInUkPage.registeredAddressInUkYes()
       UtrPage.enterUtr(matchingCtUtr)
       BusinessNamePage.enterBusinessName("matched")
+      And("They indicate that their business is not the one that was returned by matching the UTR and business name")
       IsThisYourBusinessPage.matchedBusinessNo()
-      BusinessNotIdentifiedPage.validatePageHeader("The details you entered did not match our records")
+      Then("The user should land on the 'Business not identified' page")
+      BusinessNotIdentifiedPage.onPage()
     }
 
     Scenario(
@@ -52,20 +56,21 @@ class OrgRegistrationProblemSpec extends BaseSpec {
       RegistrationTests,
       ZapTests
     ) {
-      Given("User logs in as an Organisation")
+      Given("User logs in as an Organisation with a CT enrolment")
       AuthLoginPage.loginAsAutomatchedOrgAdmin()
-      When("The user makes their way through the journey")
+      When("The user indicates that their business is not the one that was returned as part of auto-matching")
       IsThisYourBusinessPage.matchedBusinessNo()
-      DifferentBusinessPage.validatePageHeader("You’re unable to use this service with this Government Gateway user ID")
+      Then("The user should land on the 'Different business' page")
+      DifferentBusinessPage.onPage()
     }
 
-    Scenario("Organisation with UTR Pre registered", RegistrationTests, ZapTests) {
-
+    Scenario("Organisation that is already registered", RegistrationTests, ZapTests) {
       Given("User logs in as an Organisation")
       AuthLoginPage.loginAsNonAutomatchedOrgAdmin()
       When("The user makes their way through the journey")
       RegistrationTypePage.registerAs("Limited Company")
       RegisteredAddressInUkPage.registeredAddressInUkYes()
+      And("They enter the UTR and name of a business that is already registered")
       UtrPage.enterUtr(alreadyRegCtUtr)
       BusinessNamePage.enterBusinessName("already registered")
       IsThisYourBusinessPage.matchedBusinessYes()
@@ -76,12 +81,12 @@ class OrgRegistrationProblemSpec extends BaseSpec {
         .haveSecondContactNo()
       And("They submit their registration")
       CheckYourAnswerPage.confirmAndSend()
-      Then("They should land on the Organisation Already Registered page")
+      Then("They should land on the 'Organisation Already Registered' page")
       OrganisationWithUtrPreRegistered.onPage()
     }
 
-    Scenario("CT Auto-matched Organisation - Unable to change business", RegistrationTests, ZapTests, SoloTests) {
-      Given("User logs in as an Organisation")
+    Scenario("CT Auto-matched Organisation - Unable to change business", RegistrationTests, ZapTests) {
+      Given("User logs in as an Organisation with a CT enrolment")
       AuthLoginPage.loginAsAutomatchedOrgAdmin()
       When("The user makes their way through the journey")
       IsThisYourBusinessPage.matchedBusinessYes()
@@ -89,9 +94,10 @@ class OrgRegistrationProblemSpec extends BaseSpec {
         .continueSettingYourContact()
         .addFirstContact()
         .haveSecondContactNo()
-      CheckYourAnswerPage.validatePageHeader("Check your answers before you register for CRS and FATCA")
+      And("They try to change details about the business that were returned as part of auto-matching")
       CheckYourAnswerPage.clickOnByPartialLinkText(CheckYourAnswerPage.changeYourBusinessPartialLinkText)
-      UnableToChangeBusinessPage.validatePageHeader("You’re unable to change your business details")
+      Then("They should lnd on the 'Unable to change business' page")
+      UnableToChangeBusinessPage.onPage()
     }
   }
 }

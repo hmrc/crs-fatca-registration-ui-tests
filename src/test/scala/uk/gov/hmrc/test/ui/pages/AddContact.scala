@@ -24,69 +24,69 @@ object AddContact extends BasePage {
 
   def continueSettingYourContact(): this.type = {
     onPage(baseUrl + "/your-contact-details")
-    submitPageById()
+    click(submitButtonId)
     this
   }
 
   def enterFirstContactName(): Unit = {
     onPage(baseUrl + "/contact-name")
-    sendTextById(textInputField, "test FirstContactName")
-    submitPageById()
+    sendKeys(textInputField, "test FirstContactName")
+    click(submitButtonId)
   }
 
   def enterFirstContactEmail(): Unit = {
     onPage(baseUrl + "/email")
-    sendTextById(textInputField, "testFirstContactName@example.com")
-    submitPageById()
+    sendKeys(textInputField, "testFirstContactName@example.com")
+    click(submitButtonId)
   }
 
   def firstContactHavePhoneYes(): Unit = {
     onPage(baseUrl + "/have-phone")
-    clickOnYesRadioButton()
-    submitPageById()
+    click(yesRadioId)
+    click(submitButtonId)
   }
 
   def enterFirstContactPhone(): Unit = {
     onPage(baseUrl + "/phone")
-    sendTextById(textInputField, "0191 498 0000")
-    submitPageById()
+    sendKeys(textInputField, "0191 498 0000")
+    click(submitButtonId)
   }
 
   def haveSecondContactYes(): this.type = {
     onPage(baseUrl + "/have-second-contact")
-    clickOnYesRadioButton()
-    submitPageById()
+    click(yesRadioId)
+    click(submitButtonId)
     this
   }
 
   def haveSecondContactNo(): Unit = {
     onPage(baseUrl + "/have-second-contact")
-    clickOnNoRadioButton()
-    submitPageById()
+    click(noRadioId)
+    click(submitButtonId)
   }
 
   def enterSecondContactName(): Unit = {
     onPage(baseUrl + "/second-contact-name")
-    sendTextById(textInputField, "test SecondContactName")
-    submitPageById()
+    sendKeys(textInputField, "test SecondContactName")
+    click(submitButtonId)
   }
 
   def enterSecondContactEmail(): Unit = {
     onPage(baseUrl + "/second-contact-email")
-    sendTextById(textInputField, "testSecondContactName@example.com")
-    submitPageById()
+    sendKeys(textInputField, "testSecondContactName@example.com")
+    click(submitButtonId)
   }
 
   def secondContactHavePhoneYes(): Unit = {
     onPage(baseUrl + "/second-contact-have-phone")
-    clickOnYesRadioButton()
-    submitPageById()
+    click(yesRadioId)
+    click(submitButtonId)
   }
 
   def enterSecondContactPhone(): Unit = {
     onPage(baseUrl + "/second-contact-phone")
-    sendTextById(textInputField, "0191 498 0999")
-    submitPageById()
+    sendKeys(textInputField, "0191 498 0999")
+    click(submitButtonId)
   }
 
   def addFirstContact(): this.type = {

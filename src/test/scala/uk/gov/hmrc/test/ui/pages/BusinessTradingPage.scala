@@ -24,7 +24,7 @@ object BusinessTradingPage extends BasePage {
 
   def enterTradingName(): Unit = {
     onPage()
-    sendTextById(tradingNameId, "CRSFATCA Trading company")
-    submitPageById()
+    sendKeys(tradingNameId, "CRSFATCA Trading company")
+    click(submitButtonId)
   }
 }

@@ -22,7 +22,7 @@ object IdentityConfirmedPage extends BasePage {
 
   def continue(): Unit = {
     onPage()
-    submitPageById()
+    click(submitButtonId)
   }
 
 }

@@ -28,8 +28,8 @@ object YourNamePage extends BasePage {
 
   def enterYourName(): Unit = {
     onPage()
-    sendTextById(firstNameId, StFirstNameValue)
-    sendTextById(lastNameId, StLastNameValue)
-    submitPageById()
+    sendKeys(firstNameId, StFirstNameValue)
+    sendKeys(lastNameId, StLastNameValue)
+    click(submitButtonId)
   }
 }

@@ -21,7 +21,7 @@ object IndividualIsThisYourAddressPage extends BasePage {
 
   def matchedAddressYes(): Unit = {
     onPage()
-    clickOnYesRadioButton()
-    submitPageById()
+    click(yesRadioId)
+    click(submitButtonId)
   }
 }

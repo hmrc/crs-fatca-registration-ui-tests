@@ -21,8 +21,8 @@ object IndividualHavePhonePage extends BasePage {
 
   def havePhoneYes(): Unit = {
     onPage()
-    clickOnYesRadioButton()
-    submitPageById()
+    click(yesRadioId)
+    click(submitButtonId)
   }
 
 }

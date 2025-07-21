@@ -16,75 +16,55 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-import org.openqa.selenium.By
-import org.openqa.selenium.support.ui.Select
-import org.scalatest.Assertion
+import org.openqa.selenium.{By, WebDriver}
+import org.openqa.selenium.support.ui.{ExpectedConditions, FluentWait, Select, Wait}
 import org.scalatest.matchers.should.Matchers
+import uk.gov.hmrc.selenium.component.PageObject
+import uk.gov.hmrc.selenium.webdriver.Driver
 import uk.gov.hmrc.test.ui.conf.TestConfiguration
 import uk.gov.hmrc.test.ui.driver.BrowserDriver
 import uk.gov.hmrc.test.ui.utils.IdGenerators
+import java.time.Duration
 
-trait BasePage extends BrowserDriver with Matchers with IdGenerators {
-
-  case class PageNotFoundException(message: String) extends Exception(message)
+trait BasePage extends BrowserDriver with Matchers with IdGenerators with PageObject {
 
   val pageUrl: String
-  val baseUrl: String             = TestConfiguration.url("crs-fatca-registration-frontend") + "/register"
-  private val submitButtonId: By  = By.id("submit")
-  private val yesRadioId: By      = By.id("value")
-  private val noRadioId: By       = By.id("value-no")
-  private val countryDropdown: By = By.id("country")
-  private val countryOption: By   = By.id("country__option--0")
-  private val pageHeader: By      = By.tagName("h1")
-  private val backLinkText: By    = By.linkText("Back")
+  val baseUrl: String     = TestConfiguration.url("crs-fatca-registration-frontend") + "/register"
+  val submitButtonId: By  = By.id("submit")
+  val yesRadioId: By      = By.id("value")
+  val noRadioId: By       = By.id("value-no")
+  val countryDropdown: By = By.id("country")
+  val countryOption: By   = By.id("country__option--0")
+  val backLinkText: By    = By.linkText("Back")
 
-  def navigateTo(url: String): Unit =
-    driver.navigate().to(url)
+  def navigateTo(url: String): Unit = driver.navigate().to(url)
 
-  def onPage(url: String = this.pageUrl): Unit =
-    if (driver.getCurrentUrl != url)
-      throw PageNotFoundException(
-        s"Expected '$url' page, but found '${driver.getCurrentUrl}' page."
-      )
+  private def fluentWait: Wait[WebDriver] = new FluentWait[WebDriver](Driver.instance)
+    .withTimeout(Duration.ofSeconds(2))
+    .pollingEvery(Duration.ofMillis(200))
 
-  def sendTextById(id: By, textToEnter: String): Unit = {
-    driver.findElement(id).clear()
-    driver.findElement(id).sendKeys(textToEnter)
-  }
+  def onPage(url: String = this.pageUrl): Unit = fluentWait.until(ExpectedConditions.urlToBe(url))
 
   def selectDropdownById(id: By): Select = new Select(driver.findElement(id: By))
 
   def countryAutoSelect(countryName: String): Unit = {
-    driver.findElement(countryDropdown).click()
-    driver.findElement(countryDropdown).sendKeys(countryName)
-    driver.findElement(countryOption).click()
+    click(countryDropdown)
+    sendKeys(countryDropdown, countryName)
+    click(countryOption)
   }
-  def clickOnById(id: By): Unit =
-    driver.findElement(id).click()
 
-  def submitPageById(): Unit =
-    driver.findElement(submitButtonId).click()
-
-  def submitOnPageById(): Unit = {
+  def onPageSubmitById(): Unit = {
     onPage()
-    driver.findElement(submitButtonId).click()
+    click(submitButtonId)
   }
-
-  def clickOnYesRadioButton(): Unit =
-    clickOnById(yesRadioId)
-
-  def clickOnNoRadioButton(): Unit =
-    clickOnById(noRadioId)
-
-  def checkH1(h1: String): Assertion = driver.findElement(pageHeader).getText should include(h1)
 
   def clickOnBackLink(): Unit = {
     onPage()
-    driver.findElement(backLinkText).click()
+    click(backLinkText)
   }
 
   def clickOnByPartialLinkText(partialLinkText: By): Unit = {
     onPage()
-    driver.findElement(partialLinkText).click()
+    click(partialLinkText)
   }
 }

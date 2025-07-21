@@ -26,7 +26,7 @@ object UtrPage extends BasePage {
 
   def enterUtr(utrPrefix: String): Unit = {
     onPage()
-    sendTextById(utrId, generateUtr(utrPrefix))
-    submitPageById()
+    sendKeys(utrId, generateUtr(utrPrefix))
+    click(submitButtonId)
   }
 }

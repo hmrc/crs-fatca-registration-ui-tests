@@ -28,7 +28,7 @@ object BusinessNamePage extends BasePage {
 
   def enterBusinessName(matchType: String): Unit = {
     onPage()
-    sendTextById(
+    sendKeys(
       businessNameId,
       matchType match {
         case "matched"            => matchedBusinessName
@@ -36,6 +36,6 @@ object BusinessNamePage extends BasePage {
         case "already registered" => alreadyRegisteredBusinessName
       }
     )
-    submitPageById()
+    click(submitButtonId)
   }
 }

@@ -41,7 +41,7 @@ class IndividualRegistrationSpec extends BaseSpec {
       And("They submit their registration")
       CheckYourAnswerPage.confirmAndSend()
       Then("They should land on the Registration Confirmation Page")
-      ConfirmRegistrationPage.checkPage()
+      ConfirmRegistrationPage.onPage()
     }
 
     Scenario("Individual without NINO", RegistrationTests, ZapTests) {
@@ -63,7 +63,7 @@ class IndividualRegistrationSpec extends BaseSpec {
       And("They submit their registration")
       CheckYourAnswerPage.confirmAndSend()
       Then("They should land on the Registration Confirmation Page")
-      ConfirmRegistrationPage.checkPage()
+      ConfirmRegistrationPage.onPage()
     }
   }
 }
