@@ -20,9 +20,4 @@ object DifferentBusinessPage extends BasePage {
 
   override val pageUrl: String = baseUrl + "/problem/different-business"
 
-  def validatePageHeader(pageHeader: String): Unit = {
-    onPage()
-    checkH1(pageHeader)
-  }
-
 }

@@ -24,8 +24,8 @@ object IndividualUkPostcodePage extends BasePage {
 
   def enterUkPostcode(): Unit = {
     onPage()
-    sendTextById(textInputField, "ZZ1Z 7AB")
-    submitPageById()
+    sendKeys(textInputField, "ZZ1Z 7AB")
+    click(submitButtonId)
   }
 
 }

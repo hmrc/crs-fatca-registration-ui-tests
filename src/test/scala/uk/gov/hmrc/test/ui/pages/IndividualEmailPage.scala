@@ -24,8 +24,8 @@ object IndividualEmailPage extends BasePage {
 
   def enterEmail(): Unit = {
     onPage()
-    sendTextById(textInputField, "testIndividualEmail@example.com")
-    submitPageById()
+    sendKeys(textInputField, "testIndividualEmail@example.com")
+    click(submitButtonId)
   }
 
 }

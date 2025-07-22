@@ -26,13 +26,13 @@ object RegisteredAddressInUkPage extends BasePage {
 
   def registeredAddressInUkYes(): Unit = {
     onPage()
-    clickOnById(yesRadioId)
-    submitPageById()
+    click(yesRadioId)
+    click(submitButtonId)
   }
 
   def registeredAddressInUkNo(): Unit = {
     onPage()
-    clickOnById(noRadioId)
-    submitPageById()
+    click(noRadioId)
+    click(submitButtonId)
   }
 }

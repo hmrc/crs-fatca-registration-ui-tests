@@ -20,9 +20,4 @@ object OrganisationWithUtrPreRegistered extends BasePage {
 
   override val pageUrl: String = baseUrl + "/problem/organisation-already-registered"
 
-  def validatePageHeader(pageHeader: String): Unit = {
-    onPage()
-    checkH1(pageHeader)
-  }
-
 }

@@ -24,8 +24,8 @@ object IndividualPhonePage extends BasePage {
 
   def enterTelephone(): Unit = {
     onPage()
-    sendTextById(textInputField, "0191 498 0123")
-    submitPageById()
+    sendKeys(textInputField, "0191 498 0123")
+    click(submitButtonId)
   }
 
 }

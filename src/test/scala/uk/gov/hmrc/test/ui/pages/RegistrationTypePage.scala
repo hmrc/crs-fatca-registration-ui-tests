@@ -30,7 +30,7 @@ object RegistrationTypePage extends BasePage {
 
   def registerAs(registrationType: String): Unit = {
     onPage()
-    clickOnById(registrationType match {
+    click(registrationType match {
       case "Limited Company"                           => limitedCompanyRadioId
       case "Partnership"                               => partnershipRadioId
       case "LLP"                                       => llpRadioId
@@ -38,6 +38,6 @@ object RegistrationTypePage extends BasePage {
       case "Sole Trader"                               => soleTraderRadioId
       case "An individual not connected to a business" => individualRadioId
     })
-    submitPageById()
+    click(submitButtonId)
   }
 }

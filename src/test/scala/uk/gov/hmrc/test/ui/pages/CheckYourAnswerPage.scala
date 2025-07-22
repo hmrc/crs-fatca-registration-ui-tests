@@ -24,11 +24,7 @@ object CheckYourAnswerPage extends BasePage {
 
   def confirmAndSend(): Unit = {
     onPage()
-    submitPageById()
+    click(submitButtonId)
   }
 
-  def validatePageHeader(pageHeader: String): Unit = {
-    onPage()
-    checkH1(pageHeader)
-  }
 }

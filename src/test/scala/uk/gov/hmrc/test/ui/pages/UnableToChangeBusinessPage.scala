@@ -20,9 +20,4 @@ object UnableToChangeBusinessPage extends BasePage {
 
   override val pageUrl: String = baseUrl + "/problem/unable-to-change-business"
 
-  def validatePageHeader(pageHeader: String): Unit = {
-    onPage()
-    checkH1(pageHeader)
-  }
-
 }

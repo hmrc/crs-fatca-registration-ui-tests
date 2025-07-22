@@ -25,8 +25,8 @@ object BusinessNameWithoutIDPage extends BasePage {
 
   def enterBusinessName(): Unit = {
     onPage()
-    sendTextById(businessNameId, "test Business Name")
-    submitPageById()
+    sendKeys(businessNameId, "test Business Name")
+    click(submitButtonId)
   }
 
 }

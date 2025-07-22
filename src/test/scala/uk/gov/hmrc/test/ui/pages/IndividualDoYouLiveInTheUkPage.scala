@@ -21,8 +21,8 @@ object IndividualDoYouLiveInTheUkPage extends BasePage {
 
   def liveInUkYes(): Unit = {
     onPage()
-    clickOnYesRadioButton()
-    submitPageById()
+    click(yesRadioId)
+    click(submitButtonId)
   }
 
 }

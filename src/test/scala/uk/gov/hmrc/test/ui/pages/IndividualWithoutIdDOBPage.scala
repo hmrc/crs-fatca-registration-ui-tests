@@ -27,9 +27,9 @@ object IndividualWithoutIdDOBPage extends BasePage {
 
   def enterDOB(): Unit = {
     onPage()
-    sendTextById(dayId, "01")
-    sendTextById(monthId, "02")
-    sendTextById(yearId, "1990")
-    submitPageById()
+    sendKeys(dayId, "01")
+    sendKeys(monthId, "02")
+    sendKeys(yearId, "1990")
+    click(submitButtonId)
   }
 }

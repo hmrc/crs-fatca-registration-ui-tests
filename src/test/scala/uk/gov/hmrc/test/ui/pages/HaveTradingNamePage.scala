@@ -21,7 +21,7 @@ object HaveTradingNamePage extends BasePage {
 
   def haveTradingNameYes(): Unit = {
     onPage()
-    clickOnYesRadioButton()
-    submitPageById()
+    click(yesRadioId)
+    click(submitButtonId)
   }
 }

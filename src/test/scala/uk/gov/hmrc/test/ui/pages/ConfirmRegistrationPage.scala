@@ -20,6 +20,4 @@ object ConfirmRegistrationPage extends BasePage {
 
   override val pageUrl: String = baseUrl + "/confirm-registration"
 
-  def checkPage(): Unit =
-    onPage()
 }
