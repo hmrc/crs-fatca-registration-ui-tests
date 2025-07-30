@@ -26,6 +26,7 @@ object IsThisYourBusinessPage extends BasePage {
   }
 
   def matchedBusinessNo(): Unit = {
+    onPage()
     click(noRadioId)
     click(submitButtonId)
   }

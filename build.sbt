@@ -3,7 +3,7 @@ lazy val testSuite = (project in file("."))
   .settings(
     name := "crs-fatca-registration-ui-tests",
     version := "0.1.0",
-    scalaVersion := "3.3.5",
+    scalaVersion := "3.3.6",
     scalacOptions ++= Seq("-feature"),
     libraryDependencies ++= Dependencies.test
   )
