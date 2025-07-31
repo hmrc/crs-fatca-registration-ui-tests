@@ -96,7 +96,7 @@ class OrgRegistrationProblemSpec extends BaseSpec {
         .haveSecondContactNo()
       And("They try to change details about the business that were returned as part of auto-matching")
       CheckYourAnswerPage.clickOnByPartialLinkText(CheckYourAnswerPage.changeYourBusinessPartialLinkText)
-      Then("They should lnd on the 'Unable to change business' page")
+      Then("They should land on the 'Unable to change business' page")
       UnableToChangeBusinessPage.onPage()
     }
   }
