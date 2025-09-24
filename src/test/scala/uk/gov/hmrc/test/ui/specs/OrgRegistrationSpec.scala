@@ -101,21 +101,26 @@ class OrgRegistrationSpec extends BaseSpec {
 
       Given("The user logs in as a non-automatched Organisation")
       AuthLoginPage.loginAsNonAutomatchedOrgAdmin()
+
       When("The ser enters information to achieve a match on their Sole Trader business' data")
       RegistrationTypePage.registerAs("Sole Trader")
       RegisteredAddressInUkPage.registeredAddressInUkYes()
       UtrPage.enterUtr(validSaUtr)
       YourNamePage.enterYourName()
       IsThisYourBusinessPage.matchedBusinessYes()
+
       And("They enter their contact details")
       IndividualEmailPage.enterEmail()
       IndividualHavePhonePage.havePhoneYes()
       IndividualPhonePage.enterTelephone()
+
       And("They review their telephone answer with a back link")
       CheckYourAnswerPage.clickOnBackLink()
       IndividualPhonePage.onPageSubmitById()
+
       And("They submit their registration details")
       CheckYourAnswerPage.confirmAndSend()
+
       Then("They should land on the Registration Confirmation Page")
       ConfirmRegistrationPage.onPage()
     }
