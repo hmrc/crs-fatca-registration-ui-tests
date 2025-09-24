@@ -32,33 +32,30 @@ object AuthLoginPage extends BasePage {
   private val identifierCTValue: String = generateUtr(automatchedCtUtr)
 
   private def loadPage: this.type = {
-    navigateTo(pageUrl)
+    get(pageUrl)
     onPage()
     this
   }
 
-  private def selectAffinityGroup(affinityGroup: String): Unit =
-    selectDropdownById(affinityGroupById).selectByVisibleText(affinityGroup)
-
   private def addCtPreset(): Unit = {
-    selectDropdownById(presetDropDownById).selectByVisibleText("CT")
+    selectByVisibleText(presetDropDownById, "CT")
     click(presetSubmitById)
     sendKeys(identifierCTField, identifierCTValue)
   }
 
   private def submitAuthPage(): Unit = click(authSubmitById)
 
-  private def submitAuthWithoutEnrolment(affinityGroup: String) = {
+  private def submitAuthWithoutEnrolment(affinityGroup: String): Unit = {
     loadPage
     sendKeys(redirectionUrlById, redirectUrl)
-    selectAffinityGroup(affinityGroup)
+    selectByVisibleText(affinityGroupById, affinityGroup)
     submitAuthPage()
   }
 
-  private def submitAuthWithCtEnrolment(affinityGroup: String) = {
+  private def submitAuthWithCtEnrolment(affinityGroup: String): IsThisYourBusinessPage.type = {
     loadPage
     sendKeys(redirectionUrlById, redirectUrl)
-    selectAffinityGroup(affinityGroup)
+    selectByVisibleText(affinityGroupById, affinityGroup)
     addCtPreset()
     submitAuthPage()
     IsThisYourBusinessPage
