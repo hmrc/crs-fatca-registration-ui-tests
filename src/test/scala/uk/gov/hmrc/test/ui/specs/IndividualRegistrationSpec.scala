@@ -27,6 +27,7 @@ class IndividualRegistrationSpec extends BaseSpec {
 
       Given("The user logs in as a non-automatched Individual")
       AuthLoginPage.loginAsNonAutomatchedIndAdmin()
+      
       When("The user enters information to achieve a match on their personal data")
       RegistrationTypePage.registerAs("An individual not connected to a business")
       IndividualHaveNiNumberPage.haveNiNumberYes()
@@ -34,12 +35,15 @@ class IndividualRegistrationSpec extends BaseSpec {
       IndividualNamePage.enterName()
       IndividualDOBPage.enterDOB()
       IdentityConfirmedPage.continue()
+      
       And("They enter their contact details")
       IndividualEmailPage.enterEmail()
       IndividualHavePhonePage.havePhoneYes()
       IndividualPhonePage.enterTelephone()
+      
       And("They submit their registration")
       CheckYourAnswerPage.confirmAndSend()
+      
       Then("They should land on the Registration Confirmation Page")
       ConfirmRegistrationPage.onPage()
     }
@@ -48,6 +52,7 @@ class IndividualRegistrationSpec extends BaseSpec {
 
       Given("The user logs in as a non-automatched Individual")
       AuthLoginPage.loginAsNonAutomatchedIndAdmin()
+      
       When("The user enters information without a NINO to match against")
       RegistrationTypePage.registerAs("An individual not connected to a business")
       IndividualHaveNiNumberPage.haveNiNumberNo()
@@ -56,12 +61,15 @@ class IndividualRegistrationSpec extends BaseSpec {
       IndividualDoYouLiveInTheUkPage.liveInUkYes()
       IndividualUkPostcodePage.enterUkPostcode()
       IndividualIsThisYourAddressPage.matchedAddressYes()
+      
       And("They enter their contact details")
       IndividualEmailPage.enterEmail()
       IndividualHavePhonePage.havePhoneYes()
       IndividualPhonePage.enterTelephone()
+      
       And("They submit their registration")
       CheckYourAnswerPage.confirmAndSend()
+      
       Then("They should land on the Registration Confirmation Page")
       ConfirmRegistrationPage.onPage()
     }
